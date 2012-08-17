@@ -20,7 +20,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush x:Name="BackgroundImage" ImageSource="{Binding BackgroundImage, FallbackValue='/Images/SoccerBackground.png'}" Stretch="None" />
+            <ImageBrush x:Name="BackgroundImage" ImageSource="{Binding BackgroundImage, FallbackValue='../Images/SoccerBackground.png'}" Stretch="None" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

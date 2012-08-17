@@ -107,19 +107,19 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             switch ((SportType)sportId)
             {
                 case SportType.Baseball:
-                    path = "../Images/BaseballBackground_1024x768.jpg";
+                    path = "../../Images/BaseballBackground_1024x768.jpg";
                     break;
 
                 case SportType.Basketball:
-                    path = "../Images/BasketballBackground_1024x768.jpg";
+                    path = "../../Images/BasketballBackground_1024x768.jpg";
                     break;
 
                 case SportType.Soccer:
-                    path = "../Images/SoccerBackground_1024x768.jpg";
+                    path = "../../Images/SoccerBackground_1024x768.jpg";
                     break;
 
                 default:
-                    path = "../Images/SoccerBackground_1024x768.jpg";
+                    path = "../../Images/SoccerBackground_1024x768.jpg";
                     break;
             }
 
@@ -137,16 +137,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             switch (PracticeEvent.SportType)
             {
                 case SportType.Baseball:
-                    return "../Images/Tiles/SelectExistingBaseballPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/SelectExistingBaseballPracticeTile_132x276.jpg";
 
                 case SportType.Basketball:
-                    return "../Images/Tiles/SelectExistingBasketballPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/SelectExistingBasketballPracticeTile_132x276.jpg";
 
                 case SportType.Soccer:
-                    return "../Images/Tiles/SelectExistingSoccerPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/SelectExistingSoccerPracticeTile_132x276.jpg";
 
                 default:
-                    return "../Images/Tiles/SelectExistingSoccerPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/SelectExistingSoccerPracticeTile_132x276.jpg";
             }
         }
 
@@ -155,16 +155,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             switch (PracticeEvent.SportType)
             {
                 case SportType.Baseball:
-                    return "../Images/Tiles/CreateNewBaseballPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/CreateNewBaseballPracticeTile_132x276.jpg";
 
                 case SportType.Basketball:
-                    return "../Images/Tiles/CreateNewBaseketballPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/CreateNewBaseketballPracticeTile_132x276.jpg";
 
                 case SportType.Soccer:
-                    return "../Images/Tiles/CreateNewSoccerPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/CreateNewSoccerPracticeTile_132x276.jpg";
 
                 default:
-                    return "../Images/Tiles/CreateNewSoccerPracticeTile_132x276.jpg";
+                    return "../../Images/Tiles/CreateNewSoccerPracticeTile_132x276.jpg";
             }
         }
 
@@ -178,7 +178,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         {
             var currentDrills = PracticeEvent.PracticeDrills.Select(x => x.Id).ToArray();
 
-            var url = string.Format("/Views/DrillListingPage.xaml?{0}={1}&{2}={3}",
+            var url = string.Format("/Views/Practice/DrillListingPage.xaml?{0}={1}&{2}={3}",
                 QueryStringConstants.SportId, (int)PracticeEvent.SportType, QueryStringConstants.SelectedDrills, string.Join("|", currentDrills));
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
@@ -192,7 +192,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 
         private void CreateNewDrill()
         {
-            var url = string.Format("/Views/DrillCreationPage.xaml?{0}={1}&{2}={3}", 
+            var url = string.Format("/Views/Practice/DrillCreationPage.xaml?{0}={1}&{2}={3}", 
                 QueryStringConstants.SportId, (int)PracticeEvent.SportType,
                 QueryStringConstants.CallingPageName, RoutingPageConstants.PracticeEventLandingPage);
 

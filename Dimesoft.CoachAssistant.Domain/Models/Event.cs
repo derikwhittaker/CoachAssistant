@@ -49,6 +49,8 @@ namespace Dimesoft.CoachAssistant.Domain.Models
 
         public string Name { get; set; }
 
+        public int SportTypeId { get; set; }
+
     }
 
     public class LocationDto

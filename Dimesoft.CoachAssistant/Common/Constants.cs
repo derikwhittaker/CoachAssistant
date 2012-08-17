@@ -17,6 +17,6 @@
 
     public class RoutingPageConstants
     {
-        public const string PracticeEventLandingPage = "PracticeEventLandingPage.xaml";
+        public const string PracticeEventLandingPage = "EventLandingPage.xaml";
     }
 }

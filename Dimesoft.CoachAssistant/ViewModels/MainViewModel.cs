@@ -102,7 +102,7 @@ namespace Dimesoft.CoachAssistant
 
                 if ( _selectedEvent != null && _selectedEvent.EventType == EventType.Practice)
                 {
-                    var url = string.Format("/Views/PracticeEventLandingPage.xaml?{0}={1}&{2}={3}", 
+                    var url = string.Format("/Views/Practice/EventLandingPage.xaml?{0}={1}&{2}={3}", 
                         QueryStringConstants.EventId, SelectedEvent.Id, QueryStringConstants.SportTypeId, (int)SelectedEvent.SportType);
 
                     _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));

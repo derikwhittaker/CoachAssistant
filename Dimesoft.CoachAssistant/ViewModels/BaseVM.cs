@@ -43,19 +43,19 @@ namespace Dimesoft.CoachAssistant.ViewModels
             switch ((SportType)sportId)
             {
                 case SportType.Baseball:
-                    path = "../Images/BaseballBackground_1024x768.jpg";
+                    path = "../../Images/BaseballBackground_1024x768.jpg";
                     break;
 
                 case SportType.Basketball:
-                    path = "../Images/BasketballBackground_1024x768.jpg";
+                    path = "../../Images/BasketballBackground_1024x768.jpg";
                     break;
 
                 case SportType.Soccer:
-                    path = "../Images/SoccerBackground_1024x768.jpg";
+                    path = "../../Images/SoccerBackground_1024x768.jpg";
                     break;
 
                 default:
-                    path = "../Images/SoccerBackground_1024x768.jpg";
+                    path = "../../Images/SoccerBackground_1024x768.jpg";
                     break;
             }
 

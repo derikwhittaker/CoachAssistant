@@ -10,13 +10,13 @@ using NavigationService = Dimesoft.CoachAssistant.Services.NavigationService;
 
 namespace Dimesoft.CoachAssistant.Views.Practice
 {
-    public partial class PracticeEventLandingPage : PageBase
+    public partial class EventLandingPage : PageBase
     {
         public int EventId { get; set; }
         public int SportTypeId { get; set; }
 
         private ISessonStateService _sessonStateService = new SessonStateService();
-        public PracticeEventLandingPage() : base()
+        public EventLandingPage() : base()
         {
             InitializeComponent();
 

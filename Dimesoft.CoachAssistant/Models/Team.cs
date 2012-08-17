@@ -31,4 +31,11 @@ namespace Dimesoft.CoachAssistant.Models
             set { _dto.Name = value; RaisePropertyChanged(() => Name); }
         }
     }
+
+    public class Sport
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
 }

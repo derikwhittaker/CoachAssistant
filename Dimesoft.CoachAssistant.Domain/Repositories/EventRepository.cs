@@ -8,6 +8,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
     public interface IEventRepository
     {
         void Save(PracticeEventDto eventDto);
+        void Save(TeamDto teamDto);
 
         IList<TeamDto> Teams();
 
@@ -79,6 +80,13 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
             {
                 var x = e;
             }
+        }
+
+        public void Save(TeamDto teamDto )
+        {
+            DB.Database.Save<TeamDto>(teamDto);
+
+            DB.Database.Flush();
         }
 
         public IList<PracticeEventDto> All()
