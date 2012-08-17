@@ -1,0 +1,184 @@
+﻿<Views:PageBase
+    x:Class="Dimesoft.CoachAssistant.Views.Practice.PracticeEventLandingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Converters="clr-namespace:Dimesoft.CoachAssistant.Converters"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
+    d:DataContext="{d:DesignData ../SampleData/PracticeEventLandingViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+    <telerikPrimitives:RadTransitionControl.Transition>
+        <telerikPrimitives:RadContinuumTransition/>
+    </telerikPrimitives:RadTransitionControl.Transition>
+    <phone:PhoneApplicationPage.Resources>
+        <Converters:SelectionStateToVisiblityConverter x:Key="selectionStateToVisiblityConverter" />
+        <Converters:BooleanToVisibilityConverter x:Key="b2v" />
+        <Converters:BooleanToVisibilityConverter x:Key="ib2v" TrueValue="Collapsed" FalseValue="Visible" />
+    </phone:PhoneApplicationPage.Resources>
+        
+
+        <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <controls:Panorama >
+            <controls:Panorama.Background>
+                <ImageBrush x:Name="PanoramaBackground" ImageSource="{Binding BackgroundImage}" Opacity=".45" />                
+            </controls:Panorama.Background>
+            <controls:Panorama.Title>
+                <Grid>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Practice" x:Name="PageTitle" />
+                        <StackPanel Orientation="Horizontal" x:Name="PageSubTitle">
+                            <TextBlock Text="For" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
+                            <TextBlock Text="{Binding PracticeEvent.TeamName}" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
+                            <TextBlock Text="@" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
+                            <TextBlock Text="{Binding PracticeEvent.Date}" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}"  Margin="2,0"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </Grid>
+            </controls:Panorama.Title>
+
+            <!--Panorama item one-->
+            <controls:PanoramaItem >
+                <controls:PanoramaItem.Header>
+                    <Grid>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Drills" />
+                            <TextBlock Text="{Binding DrillCount}" 
+                                       Visibility="{Binding IsBusy, Converter={StaticResource ib2v}}"
+                                       Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </controls:PanoramaItem.Header>
+                <!--Double line list with text wrapping-->
+                <Grid>                    
+                    <TextBlock Text="To add your first Practice Drill select Either Existing or New on the other Panel"
+                               TextWrapping="Wrap"
+                                Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}"
+                           Visibility="{Binding HasPracticeDrills, Converter={StaticResource ib2v}}"/>
+
+                    <ListBox Margin="0,0,-12,0" ItemsSource="{Binding PracticeEvent.PracticeDrills}" 
+                         SelectedItem="{Binding SelectedPracticeDrill, Mode=TwoWay}"
+                         Visibility="{Binding HasPracticeDrills, Converter={StaticResource b2v}}"
+				            telerik:InteractionEffectManager.IsInteractionEnabled="True" 
+				            ItemContainerStyle="{StaticResource StretchableListBoxItemStyle}"
+                         >
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Border Grid.Column="0" Grid.RowSpan="2"
+										VerticalAlignment="Center"
+										HorizontalAlignment="Center"
+										Width="36" Height="36">
+
+                                    </Border>
+
+                                    <!--<CheckBox Grid.Column="0" IsChecked="{Binding Selected, Mode=TwoWay}" 
+                                              Visibility="{Binding ElementName=LayoutRoot, Path=DataContext.ShowSelectionCheckBoxes, Converter={StaticResource b2v}}" />-->
+
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                    <telerikPrimitives:RadBusyIndicator Background="Transparent"
+                                            x:Name="busyIndicator" 
+                                            IsRunning="{Binding IsBusy}"
+                                            Content="Loading Practice Events"
+                                            AnimationStyle="AnimationStyle3" />                    
+                </Grid>
+
+            </controls:PanoramaItem>
+
+            <!--Panorama item two-->
+            <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
+            <controls:PanoramaItem Header="Actions">
+                <!--Double line list with image placeholder and text wrapping-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <telerikPrimitives:RadSlideHubTile Grid.Column="0"
+												Grid.Row="0"
+												Title="Select Existing Drill"
+                                                 Width="276"
+                                                 Height="132"
+                                                 HorizontalAlignment="Left"
+												 VerticalAlignment="Top"
+                                                 Margin="0,0,10,10"
+                                                 Padding="6"
+												 Background="{StaticResource BlueColorBrush}"
+												 Foreground="{StaticResource MazeColorBrush}"
+                                                 FontSize="{StaticResource PhoneFontSizeMedium}"
+                                                 FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                 Command="{Binding SelectExistingDrillCommand}"
+                                                 telerikPrimitives:RadHubTileService.GroupTag="ExistingDrill"
+                                                 telerik:InteractionEffectManager.IsInteractionEnabled="True">
+                        <telerikPrimitives:RadSlideHubTile.Picture>
+                            <Image Source="{Binding SelectExistingPracticeTileImage}" Stretch="UniformToFill"/>
+                        </telerikPrimitives:RadSlideHubTile.Picture>
+                    </telerikPrimitives:RadSlideHubTile>
+                    <telerikPrimitives:RadSlideHubTile Grid.Column="0"
+												 Grid.Row="1"
+												 Title="Create New Drill"
+                                                 Width="276"
+                                                 Height="132"
+                                                 HorizontalAlignment="Right"
+												 VerticalAlignment="Top"
+                                                 Margin="0,0,10,10"
+                                                 Padding="6"
+												 Background="{StaticResource MazeColorBrush}"
+												 Foreground="{StaticResource BlueColorBrush}"
+                                                 FontSize="{StaticResource PhoneFontSizeMedium}"
+                                                       Command="{Binding CreateNewDrillCommand}"
+                                                 FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                 telerikPrimitives:RadHubTileService.GroupTag="NewDrill"                                                  
+                                                 telerik:InteractionEffectManager.IsInteractionEnabled="True">
+                        <telerikPrimitives:RadSlideHubTile.Picture>
+                            <Image Source="{Binding CreateNewPracticeTileImage}" Stretch="UniformToFill"/>
+                        </telerikPrimitives:RadSlideHubTile.Picture>
+                    </telerikPrimitives:RadSlideHubTile>
+                </Grid>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</Views:PageBase>

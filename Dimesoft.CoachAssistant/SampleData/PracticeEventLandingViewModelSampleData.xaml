@@ -1,0 +1,23 @@
+﻿<Practice:EventLandingViewModel xmlns:Dimesoft_CoachAssistant_ViewModels="clr-namespace:Dimesoft.CoachAssistant.ViewModels" xmlns="http://schemas.microsoft.com/client/2007" xmlns:Dimesoft_CoachAssistant_Models="clr-namespace:Dimesoft.CoachAssistant.Models" xmlns:Dimesoft_CoachAssistant_Domain_Models="clr-namespace:Dimesoft.CoachAssistant.Domain.Models;assembly=Dimesoft.CoachAssistant.Domain"
+                                                                  xmlns:Practice="clr-namespace:Dimesoft.CoachAssistant.ViewModels.Practice"
+                                                                  IsInDesignMode="True" IsInDesignModeStatic="False">
+	<Practice:EventLandingViewModel.BackgroundImage>
+        <BitmapImage UriSource="../Images/BaseballBackground.png"/>
+	</Practice:EventLandingViewModel.BackgroundImage>
+    
+	<Practice:EventLandingViewModel.PracticeEvent>
+		<Dimesoft_CoachAssistant_Models:PracticeEvent Date="Aenean curabitur mauris nullam" EventType="Game" LocationName="Maecenas aptent phasellus consequat" SportType="Unknown" Time="Vestibulum praesent adipiscing cras" TeamName="Auctor congue aliquam convallis nam">
+			<Dimesoft_CoachAssistant_Models:PracticeEvent.PracticeDrills>
+		        <Dimesoft_CoachAssistant_Models:PracticeDrill>
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                    <Dimesoft_CoachAssistant_Models:PracticeDrill Name="Cone to Cone Drill" />
+                </Dimesoft_CoachAssistant_Models:PracticeDrill>
+            </Dimesoft_CoachAssistant_Models:PracticeEvent.PracticeDrills>
+		</Dimesoft_CoachAssistant_Models:PracticeEvent>
+	</Practice:EventLandingViewModel.PracticeEvent>
+</Practice:EventLandingViewModel>

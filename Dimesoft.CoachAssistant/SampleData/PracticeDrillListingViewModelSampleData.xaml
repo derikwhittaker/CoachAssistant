@@ -1,0 +1,20 @@
+<Practice:DrillListingViewModel xmlns:Dimesoft_CoachAssistant_ViewModels="clr-namespace:Dimesoft.CoachAssistant.ViewModels" xmlns="http://schemas.microsoft.com/client/2007" 
+                                                                  xmlns:Dimesoft_CoachAssistant_Models="clr-namespace:Dimesoft.CoachAssistant.Models"
+                                                                  xmlns:Practice="clr-namespace:Dimesoft.CoachAssistant.ViewModels.Practice"
+                                                                  ApplicationName="Coaches Assistant" CurrentSportType="Baseball" IsInDesignMode="True" IsInDesignModeStatic="False" PageTitle="Soccer Drills">
+	<Practice:DrillListingViewModel.BackgroundImage>
+        <BitmapImage UriSource="../Images/BaseballBackground.png"/>
+    </Practice:DrillListingViewModel.BackgroundImage>
+	<Practice:DrillListingViewModel.Drills>
+		<Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="False" IsInDesignModeStatic="True" Id="78" Name="Drill 1" Selected="True"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="True" IsInDesignModeStatic="False" Id="75" Name="Drill 2" Selected="False"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="False" IsInDesignModeStatic="True" Id="77" Name="Drill 3" Selected="True"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="True" IsInDesignModeStatic="False" Id="24" Name="Drill 4" Selected="False"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="False" IsInDesignModeStatic="True" Id="28" Name="Drill 5" Selected="True"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="True" IsInDesignModeStatic="False" Id="25" Name="Drill 6" Selected="False"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="False" IsInDesignModeStatic="True" Id="22" Name="Drill 7" Selected="True"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="True" IsInDesignModeStatic="False" Id="81" Name="Drill 8" Selected="False"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="False" IsInDesignModeStatic="True" Id="50" Name="Drill 9" Selected="True"/>
+        <Dimesoft_CoachAssistant_Models:Drill IsInDesignMode="True" IsInDesignModeStatic="False" Id="77" Name="Drill 10" Selected="False"/>
+	</Practice:DrillListingViewModel.Drills>
+</Practice:DrillListingViewModel>
