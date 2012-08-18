@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
@@ -17,6 +18,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         private string _teamName;
         private RelayCommand _saveTeamCommand;
         private bool _isSaveEnabled;
+        private TeamDto _currentTeam = new TeamDto();
 
         public CreationViewModel(INavigationService navigationService, IEventRepository eventRepository)
         {
@@ -34,6 +36,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                          };
         }
 
+        public void LoadData( int teamId )
+        {
+            _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
+
+            SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId );
+
+            RaisePropertyChanged(() => TeamName);
+            RaisePropertyChanged(() => SelectedSport);
+        }
+
         public RelayCommand SaveTeamCommand
         {
             get { return _saveTeamCommand ?? (_saveTeamCommand = new RelayCommand(SaveTeam, CanSaveTeam)); }
@@ -46,23 +58,18 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
         private void SaveTeam()
         {
-            var team = new TeamDto
-                {
-                    Name = TeamName,
-                    SportTypeId = SelectedSport.Id
-                };
 
-            _eventRepository.Save(team);
+            _eventRepository.Save(_currentTeam);
 
             _navigationService.GoBack();
         }
         
         public string TeamName
         {
-            get { return _teamName; }
+            get { return _currentTeam.Name; }
             set
             {
-                _teamName = value; 
+                _currentTeam.Name = value; 
                 RaisePropertyChanged(() => TeamName);
                 SaveTeamCommand.RaiseCanExecuteChanged();
             }
@@ -74,6 +81,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             set
             {
                 _selectedSport = value;
+                _currentTeam.SportTypeId = value.Id;
                 RaisePropertyChanged(() => SelectedSport);
                 SaveTeamCommand.RaiseCanExecuteChanged();
             }

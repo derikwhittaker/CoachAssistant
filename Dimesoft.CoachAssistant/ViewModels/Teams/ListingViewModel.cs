@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
@@ -14,6 +15,9 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 {
     public class ListingViewModel : BaseVM
     {
+
+        private ObservableCollection<Team> _teamss;
+        private Team _selectedTeam;
         private readonly INavigationService _navigationService;
         private readonly IEventRepository _eventRepository;
 
@@ -59,7 +63,6 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                         });
         }
 
-
         private RelayCommand _createNewTeamCommand;
         public RelayCommand CreateNewTeamCommand
         {
@@ -73,11 +76,30 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
-        private ObservableCollection<Team> _teamss;
         public ObservableCollection<Team> Teams
         {
             get { return _teamss; }
             set { _teamss = value; RaisePropertyChanged(() => Teams); }
+        }
+
+        public Team SelectedTeam
+        {
+            get { return _selectedTeam; }
+            set
+            {
+                _selectedTeam = value;
+
+                EditSelectedTeam(value);
+            }
+        }
+
+        private void EditSelectedTeam(Team team)
+        {
+            if (team == null) { return; }
+
+            var url = string.Format("/Views/Teams/CreationPage.xaml?{0}={1}", QueryStringConstants.TeamId, team.Id);
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
     }
 }

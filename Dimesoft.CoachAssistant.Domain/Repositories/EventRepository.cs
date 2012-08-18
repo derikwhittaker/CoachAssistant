@@ -27,6 +27,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
 
             if (!results.Any())
             {
+
                 DB.Database.Save<PracticeEventDto>(new PracticeEventDto
                                                {
                                                    Id = 1,
@@ -36,7 +37,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                                                    SportTypeId = (int)SportType.Soccer,
                                                    Completed = false,
                                                    Team = new TeamDto {Id = 1},
-                                                   Location = new LocationDto {Id = 1, Name = "Practice Field 1"},
+                                                   Location = new LocationDto {Id = 1},
                                                    PracticeDrills = new List<PracticeDrillDto>()
                                                });
                 DB.Database.Save<PracticeEventDto>(new PracticeEventDto
@@ -48,7 +49,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                                                    SportTypeId = (int)SportType.Baseball,
                                                    Completed = false,
                                                    Team = new TeamDto {Id = 2},
-                                                   Location = new LocationDto {Id = 1, Name = "Practice Field 2"},
+                                                   Location = new LocationDto {Id = 3},
                                                    PracticeDrills = new List<PracticeDrillDto>
                                                                         {
                                                                             new PracticeDrillDto
@@ -62,7 +63,12 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                                                });
 
                 DB.Database.Save<TeamDto>(new TeamDto { Id = 1, Name = "Sparks" });
-                DB.Database.Save<TeamDto>(new TeamDto { Id = 2, Name = "Braves" });
+                DB.Database.Save<TeamDto>(new TeamDto { Id = 2, Name = "Clash" });
+
+                DB.Database.Save<LocationDto>(new LocationDto { Id = 1, Name = "Green Hope Field 1a" });
+                DB.Database.Save<LocationDto>(new LocationDto { Id = 2, Name = "Green Hope Field 1b" });
+                DB.Database.Save<LocationDto>(new LocationDto { Id = 3, Name = "Green Hope Field 2a" });
+                DB.Database.Save<LocationDto>(new LocationDto { Id = 4, Name = "Green Hope Field 2b" });
 
                 DB.Database.Flush();
             }
