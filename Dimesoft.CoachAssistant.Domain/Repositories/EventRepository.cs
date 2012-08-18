@@ -12,6 +12,8 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
 
         IList<TeamDto> Teams();
 
+        IList<LocationDto> Locations();
+
         IList<PracticeEventDto> All();
         IList<PracticeEventDto> Open();
         IList<PracticeEventDto> Completed();
@@ -108,6 +110,15 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         {
             var results = from team in DB.Database.Query<TeamDto, int>()
                           select team.LazyValue.Value;
+
+
+            return results.ToList();
+        }
+
+        public IList<LocationDto> Locations()
+        {
+            var results = from field in DB.Database.Query<LocationDto, int>()
+                          select field.LazyValue.Value;
 
 
             return results.ToList();

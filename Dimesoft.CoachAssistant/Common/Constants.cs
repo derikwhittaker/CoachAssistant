@@ -7,6 +7,7 @@
         public const string EventId = "EventId";
         public const string SportId = "SportId";
         public const string TeamId = "TeamId";
+        public const string FieldId = "FieldId";
         public const string SelectedDrills = "SelectedDrills";
     }
 

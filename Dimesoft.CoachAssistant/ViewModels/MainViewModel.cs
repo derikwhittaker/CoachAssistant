@@ -11,7 +11,6 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 using Event = Dimesoft.CoachAssistant.Models.Event;
 
-
 namespace Dimesoft.CoachAssistant
 {
     public class MainViewModel : BaseVM
@@ -62,6 +61,19 @@ namespace Dimesoft.CoachAssistant
                                                               DataLoaded = true;
                                                               IsBusy = false;
                                                           });
+        }
+
+        private RelayCommand _fieldListingCommand;
+        public RelayCommand FieldListingCommand
+        {
+            get { return _fieldListingCommand ?? (_fieldListingCommand = new RelayCommand(FieldListing)); }
+        }
+
+        private void FieldListing()
+        {
+            var url = string.Format("/Views/Fields/ListingPage.xaml");
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         private RelayCommand _teamListingCommand;

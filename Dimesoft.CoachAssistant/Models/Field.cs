@@ -3,12 +3,12 @@ using GalaSoft.MvvmLight;
 
 namespace Dimesoft.CoachAssistant.Models
 {
-    public class Team : ViewModelBase
+    public class Field : ViewModelBase
     {
-        private readonly TeamDto _dto;
+        private readonly LocationDto _dto;
         private bool _selected;
 
-        public Team( TeamDto dto)
+        public Field(LocationDto dto)
         {
             _dto = dto;
         }
