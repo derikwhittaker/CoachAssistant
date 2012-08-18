@@ -41,24 +41,15 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <Grid Margin="0,5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
-
-                            <Border Grid.Column="0" Grid.RowSpan="2"
-										VerticalAlignment="Center"
-										HorizontalAlignment="Center"
-										Width="36" Height="36">
-
-                            </Border>
                             
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
+                            <TextBlock Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
+
+                            <TextBlock Grid.Row="1" Text="{Binding SportName}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
 
                         </Grid>
                     </DataTemplate>

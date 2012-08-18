@@ -9,6 +9,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
     {
         void Save(PracticeEventDto eventDto);
         void Save(TeamDto teamDto);
+        void Save(LocationDto locationDto);
 
         IList<TeamDto> Teams();
 
@@ -93,6 +94,13 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         public void Save(TeamDto teamDto )
         {
             DB.Database.Save<TeamDto>(teamDto);
+
+            DB.Database.Flush();
+        }
+
+        public void Save(LocationDto locationDto)
+        {
+            DB.Database.Save<LocationDto>(locationDto);
 
             DB.Database.Flush();
         }

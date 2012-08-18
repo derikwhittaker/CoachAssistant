@@ -112,6 +112,7 @@
     <Compile Include="Services\SessonStateService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\Fields\CreationViewModel.cs" />
     <Compile Include="ViewModels\Fields\ListingViewModel.cs" />
     <Compile Include="ViewModels\Practice\DrillCreationViewModel.cs" />
     <Compile Include="ViewModels\Practice\DrillListingViewModel.cs" />
@@ -120,6 +121,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Teams\CreationViewModel.cs" />
     <Compile Include="ViewModels\Teams\ListingViewModel.cs" />
+    <Compile Include="Views\Fields\CreationPage.xaml.cs">
+      <DependentUpon>CreationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Fields\ListingPage.xaml.cs">
       <DependentUpon>ListingPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +167,10 @@
       <SubType>Designer</SubType>
     </DesignData>
     <Page Include="Styles\General.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Fields\CreationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

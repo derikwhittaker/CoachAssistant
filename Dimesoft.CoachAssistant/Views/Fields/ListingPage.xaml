@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -41,25 +41,8 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Border Grid.Column="0" Grid.RowSpan="2"
-										VerticalAlignment="Center"
-										HorizontalAlignment="Center"
-										Width="36" Height="36">
-
-                            </Border>
-
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
-
+                        <Grid Margin="0,5">
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

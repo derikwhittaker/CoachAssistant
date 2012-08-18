@@ -6,11 +6,13 @@ namespace Dimesoft.CoachAssistant.Models
     public class Team : ViewModelBase
     {
         private readonly TeamDto _dto;
+        private readonly Sport _sport;
         private bool _selected;
 
-        public Team( TeamDto dto)
+        public Team(TeamDto dto, Sport sport)
         {
             _dto = dto;
+            _sport = sport;
         }
 
         public int Id
@@ -29,6 +31,11 @@ namespace Dimesoft.CoachAssistant.Models
         {
             get { return _dto.Name; }
             set { _dto.Name = value; RaisePropertyChanged(() => Name); }
+        }
+
+        public string SportName
+        {
+            get { return _sport.Name; }
         }
     }
 }

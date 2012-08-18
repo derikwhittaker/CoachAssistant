@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using Dimesoft.CoachAssistant.Common;
+using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
@@ -34,14 +35,22 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             if (DataLoaded) { return; }
             IsBusy = true;
 
+            var sports = new List<Sport>
+                         {
+                             new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
+                             new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
+                             new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
+                             new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
+                         };
 
             Scheduler.NewThread.Schedule(() =>
             {
                 Debug.WriteLine(string.Format("Load Team Data - {0}", System.Threading.Thread.CurrentThread.ManagedThreadId));
-
+                
                 var teams = _eventRepository.Teams().Select(x =>
-                                                                 {
-                                                                     var team = new Team(x);
+                                                                {
+                                                                    var sport = sports.FirstOrDefault(s => s.Id == x.SportTypeId);
+                                                                     var team = new Team(x, sport);
                                                                      return team;
 
                                                                  }).OrderBy(x => x.Name).ToList();
