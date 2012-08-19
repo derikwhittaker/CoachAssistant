@@ -29,6 +29,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         private Field _selectedField;
         private Models.Event _currentEvent = new Models.Event(new EventDto());
         private RelayCommand _saveEventCommand;
+        private IList<Sport> _sports = new List<Sport>();
 
         public EventCreationViewModel( IEventRepository eventRepository )
         {
@@ -43,7 +44,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             Scheduler.NewThread.Schedule(() =>
                                              {
 
-                                                var sports = new List<Sport>
+                                                 _sports = new List<Sport>
                                                                      {
                                                                          new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
                                                                          new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
@@ -59,7 +60,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                                                  
                                                  var teams = _eventRepository.Teams().Select(x =>
                                                                                  {
-                                                                                     var sport = sports.FirstOrDefault(s => s.Id == x.SportTypeId);
+                                                                                     var sport = _sports.FirstOrDefault(s => s.Id == x.SportTypeId);
                                                                                      var team = new Team(x, sport);
 
                                                                                      return team;
@@ -193,6 +194,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             {
                 _selectedTeam = value;
                 RaisePropertyChanged(() => SelectedTeam);
+                RaisePropertyChanged(() => SportName);
             }
         }
 
@@ -237,5 +239,20 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         }
 
         public string Notes { get; set; }
+
+        public string SportName
+        {
+            get
+            {
+                if (SelectedTeam == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return SelectedTeam.Name;
+                }
+            }
+        }
     }
 }

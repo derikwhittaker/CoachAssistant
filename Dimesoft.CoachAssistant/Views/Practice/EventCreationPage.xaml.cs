@@ -12,6 +12,15 @@ namespace Dimesoft.CoachAssistant.Views.Practice
 
             var vm = new EventCreationViewModel( new EventRepository() );
 
+            vm.PropertyChanged += (s, e) =>
+                                      {
+                                          if (e.PropertyName == "SelectedTeam")
+                                          {
+                                              var sportId = ViewModel.SelectedTeam.Dto.SportTypeId;
+                                              BackgroundImage.ImageSource = ViewModel.GetBackgroundImage(sportId);
+                                          }
+                                      };
+
             DataContext = vm;
         }
 
