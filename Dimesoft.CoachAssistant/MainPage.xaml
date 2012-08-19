@@ -10,7 +10,7 @@
     xmlns:Converters="clr-namespace:Dimesoft.CoachAssistant.Converters"
     xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-    xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
+    xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views" mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,6 +20,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <Converters:SportTypeToImageConverter x:Key="sportTypeToImageConverter" />
+        <Converters:BooleanToVisibilityConverter x:Key="b2v" />
 		
     </phone:PhoneApplicationPage.Resources>
     
@@ -69,7 +70,11 @@
                                         <Image Source="{Binding SportType, Converter={StaticResource sportTypeToImageConverter}}" />
                                     </Border>
 
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EventName}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EventName}" VerticalAlignment="Center" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}" />
+                                    <Border Grid.Column="1" Grid.Row="0" Margin="10,10,10,0" 
+                                            Visibility="{Binding IsCompleted, Converter={StaticResource b2v}}"
+                                            Opacity=".75"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderThickness="1" BorderBrush="Black" />
 
                                     <Grid Grid.Column="1" Grid.Row="2">
                                         <Grid.ColumnDefinitions>
@@ -185,4 +190,14 @@
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="ShowAllEventMenuItem" Text="Show All Events" Click="ShowAllEventsClicked" />
+                <shell:ApplicationBarMenuItem x:Name="ShowOnlyActiveMenuItem" Text="Show Only Active" Click="ShowOnlyActiveClicked" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </Views:PageBase>

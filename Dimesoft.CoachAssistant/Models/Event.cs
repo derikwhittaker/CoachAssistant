@@ -6,7 +6,7 @@ namespace Dimesoft.CoachAssistant.Models
 {
     public class Event : ViewModelBase
     {
-        protected readonly EventDto _dto;
+        public readonly EventDto _dto;
 
 
         public Event(EventDto dto)
@@ -66,11 +66,16 @@ namespace Dimesoft.CoachAssistant.Models
         {
             get { return _dto.Date.ToString(); }
         }
-
-
+        
         public object Id
         {
             get { return _dto.Id; }
+        }
+
+        public bool IsCompleted
+        {
+            get { return _dto.Completed; }
+            set { _dto.Completed = value; }
         }
     }
 }

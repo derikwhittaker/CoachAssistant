@@ -21,4 +21,11 @@
     {
         public const string PracticeEventLandingPage = "EventLandingPage.xaml";
     }
+
+    public enum DashboardViewState
+    {
+        ShowAll = 1,
+        ShowActive = 2,
+        ShowCompleted = 3
+    }
 }

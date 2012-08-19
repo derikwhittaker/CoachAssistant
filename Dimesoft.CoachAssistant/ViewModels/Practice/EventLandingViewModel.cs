@@ -199,6 +199,18 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
+        public RelayCommand PracticeCompletedCommand
+        {
+            get { return _practiceCompletedCommand ?? (_practiceCompletedCommand = new RelayCommand(PracticeCompleted)); }
+        }
+
+        private void PracticeCompleted()
+        {
+            PracticeEvent.IsCompleted = true;
+            
+            _eventRepository.Save(PracticeEvent._dto);
+        }
+
         public BitmapImage CreateNewPracticeTileImage
         {
             get
@@ -249,7 +261,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 
         private PracticeDrill _selectedPracticeDrill;
         private bool _showSelectionCheckBoxes = false;
-        
+        private RelayCommand _practiceCompletedCommand;
+
 
         public PracticeDrill SelectedPracticeDrill
         {
@@ -299,5 +312,6 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             get { return _showSelectionCheckBoxes; }
             set { _showSelectionCheckBoxes = value; RaisePropertyChanged(() => ShowSelectionCheckBoxes); }
         }
+
     }
 }

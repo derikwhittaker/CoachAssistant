@@ -13,7 +13,7 @@ namespace Dimesoft.CoachAssistant.Models
         }
 
         private IList<PracticeDrill> _practiceDrills;
-        
+
         public IList<PracticeDrill> PracticeDrills
         {
             get { return _practiceDrills; }
@@ -66,4 +66,5 @@ namespace Dimesoft.CoachAssistant.Models
         Unselected = 1,
         Selected = 2
     }
+
 }

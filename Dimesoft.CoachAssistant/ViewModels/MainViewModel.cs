@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -16,6 +17,10 @@ namespace Dimesoft.CoachAssistant
     public class MainViewModel : BaseVM
     {
         private readonly INavigationService _navigationService;
+        private Event _selectedEvent;
+        private DashboardViewState _dashboardViewState = DashboardViewState.ShowActive; 
+        private ObservableCollection<Event> _events;
+        private RelayCommand _teamListingCommand;
 
         public MainViewModel(){}
 
@@ -33,8 +38,22 @@ namespace Dimesoft.CoachAssistant
                                              {
                                                  SetupDatabase();
 
-                                                 var repo = new Domain.Repositories.EventRepository();
-                                                 var eventDtos = repo.All();
+                                                 var repo = new EventRepository();
+                                                 IList<EventDto> eventDtos = new List<EventDto>();
+                                                 switch (DashboardViewState)
+                                                 {
+                                                    case DashboardViewState.ShowAll:
+                                                    eventDtos = repo.All();
+                                                    break;
+
+                                                    case DashboardViewState.ShowActive:
+                                                    eventDtos = repo.Open();
+                                                    break;
+
+                                                    case DashboardViewState.ShowCompleted:
+                                                    eventDtos = repo.Completed();
+                                                    break;
+                                                 }
 
                                                  var events = new ObservableCollection<Event>(eventDtos.Select(x => new Event(x)).ToList());
 
@@ -76,7 +95,7 @@ namespace Dimesoft.CoachAssistant
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
-        private RelayCommand _teamListingCommand;
+        
         public RelayCommand TeamListingCommand
         {
             get { return _teamListingCommand ?? (_teamListingCommand = new RelayCommand(TeamListing)); }
@@ -89,7 +108,7 @@ namespace Dimesoft.CoachAssistant
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
-        private ObservableCollection<Event> _events;
+        
         public ObservableCollection<Event> Events
         {
             get { return _events; }
@@ -100,9 +119,7 @@ namespace Dimesoft.CoachAssistant
                 RaisePropertyChanged(() => EventsCount);
             }
         }
-        
-        private Event _selectedEvent;
-        
+
         public Event SelectedEvent
         {
             get { return _selectedEvent; }
@@ -134,5 +151,18 @@ namespace Dimesoft.CoachAssistant
             }
         }
 
+        public DashboardViewState DashboardViewState
+        {
+            get { return _dashboardViewState; }
+            set
+            {
+                if (_dashboardViewState != value)
+                {
+                    _dashboardViewState = value;
+                    LoadData();
+                    RaisePropertyChanged(() => DashboardViewState);
+                }
+            }
+        }
     }
 }

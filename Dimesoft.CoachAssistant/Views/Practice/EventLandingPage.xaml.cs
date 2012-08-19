@@ -59,10 +59,17 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             PanoramaBackground.ImageSource = ViewModel.GetBackgroundImage(SportTypeId);
         }
 
+        private void PracticeCompletedClicked(object sender, EventArgs e)
+        {
+            ViewModel.PracticeCompletedCommand.Execute(null);
+        }
+
         public EventLandingViewModel ViewModel
         {
             get { return DataContext as EventLandingViewModel; }
         }
+
+ 
     }
 
     public static class NavigationContextExtensions
