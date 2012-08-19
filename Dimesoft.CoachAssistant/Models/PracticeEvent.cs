@@ -7,7 +7,7 @@ namespace Dimesoft.CoachAssistant.Models
 {
     public class PracticeEvent : Event
     {
-        public PracticeEvent(PracticeEventDto dto) : base(dto)
+        public PracticeEvent(EventDto dto) : base(dto)
         {
             PracticeDrills = dto.PracticeDrills.Select(x => new PracticeDrill(x)).ToList();
         }

@@ -24,9 +24,37 @@ namespace Dimesoft.CoachAssistant.Models
             get { return _dto.SportType; }
         }
 
+        public string EventName
+        {
+            get
+            {
+                if (EventType == EventType.Game)
+                {
+                    return string.Format("{0} vs. {1}", TeamName, OpponentTeamName);
+                }
+                else
+                {
+                    return TeamName;
+                }
+            }
+        }
+
         public string TeamName
         {
             get { return _dto.Team.Name; }
+        }
+
+        public string OpponentTeamName
+        {
+            get
+            {
+                if (_dto.Opponent != null)
+                {
+                    return _dto.Opponent.Name;    
+                }
+
+                return string.Empty;
+            }
         }
 
         public string LocationName
@@ -39,10 +67,6 @@ namespace Dimesoft.CoachAssistant.Models
             get { return _dto.Date.ToString(); }
         }
 
-        public string Time
-        {
-            get { return _dto.Time.ToString(); }
-        }
 
         public object Id
         {

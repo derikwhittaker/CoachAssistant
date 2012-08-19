@@ -29,7 +29,7 @@
         <!--Panorama control-->
         <controls:Panorama Title="Coach Assistant">
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="Images/SportsGeneralBackground_1024x768.jpg" Opacity=".45" />
+                <ImageBrush ImageSource="Images/SportsGeneralBackground_1024x768.jpg" Opacity=".40" />
             </controls:Panorama.Background>
  
             <!--Panorama item one-->
@@ -69,7 +69,7 @@
                                         <Image Source="{Binding SportType, Converter={StaticResource sportTypeToImageConverter}}" />
                                     </Border>
 
-                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding TeamName}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EventName}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
 
                                     <Grid Grid.Column="1" Grid.Row="2">
                                         <Grid.ColumnDefinitions>

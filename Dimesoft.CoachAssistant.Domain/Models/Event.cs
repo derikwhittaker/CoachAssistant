@@ -15,11 +15,11 @@ namespace Dimesoft.CoachAssistant.Domain.Models
         
         public TeamDto Team { get; set; }
 
+        public TeamDto Opponent { get; set; }
+
         public LocationDto Location { get; set; }
 
         public DateTime Date { get; set; }
-
-        public DateTime Time { get; set; }
 
         public int EventTypeId { get; set; }
 
@@ -41,6 +41,8 @@ namespace Dimesoft.CoachAssistant.Domain.Models
         
         public bool Completed { get; set; }
 
+        public IList<PracticeDrillDto> PracticeDrills { get; set; }
+
     }
 
     public class TeamDto : IBaseModel
@@ -59,13 +61,7 @@ namespace Dimesoft.CoachAssistant.Domain.Models
 
         public string Name { get; set; }
     }
-
-    public class PracticeEventDto : EventDto
-    {
-        public IList<PracticeDrillDto> PracticeDrills { get; set; } 
-    }
-
-
+    
     public class PracticeDrillDto : IBaseModel
     {        
         public int Sequence { get; set; }

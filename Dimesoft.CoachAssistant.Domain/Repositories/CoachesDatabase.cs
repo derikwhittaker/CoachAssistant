@@ -24,7 +24,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
 
             _database = _engine.SterlingDatabase.RegisterDatabase<CoachesDatabase>(new IsolatedStorageDriver());
 
-            _database.RegisterTrigger(new IdentityTrigger<PracticeEventDto>(_database));
+            _database.RegisterTrigger(new IdentityTrigger<EventDto>(_database));
             _database.RegisterTrigger(new IdentityTrigger<PracticeDrillDto>(_database));
             _database.RegisterTrigger(new IdentityTrigger<TeamDto>(_database));
             _database.RegisterTrigger(new IdentityTrigger<LocationDto>(_database));
@@ -59,9 +59,9 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
             return new List<ITableDefinition>
                        {
 
-                           CreateTableDefinition<PracticeEventDto, int>(model => model.Id)
-                                .WithIndex<PracticeEventDto, int, int>(SportTypeDataIndex, t => t.SportTypeId)
-                                .WithIndex<PracticeEventDto, int, int>(EventTypeDataIndex, t => t.EventTypeId),
+                           CreateTableDefinition<EventDto, int>(model => model.Id)
+                                .WithIndex<EventDto, int, int>(SportTypeDataIndex, t => t.SportTypeId)
+                                .WithIndex<EventDto, int, int>(EventTypeDataIndex, t => t.EventTypeId),
                                
                            CreateTableDefinition<PracticeDrillDto, int>(testModel => testModel.Id)
                                .WithIndex<PracticeDrillDto, int, int>(SportTypeDataIndex, t => t.SportTypeId),
