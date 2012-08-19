@@ -14,7 +14,7 @@ namespace Dimesoft.CoachAssistant.Models
             _dto = dto;
         }
 
-        public EventType EventType
+        public Domain.Models.EventType EventType
         {
             get { return _dto.EventType; }
         }
@@ -28,7 +28,7 @@ namespace Dimesoft.CoachAssistant.Models
         {
             get
             {
-                if (EventType == EventType.Game)
+                if (EventType == Domain.Models.EventType.Game)
                 {
                     return string.Format("{0} vs. {1}", TeamName, OpponentTeamName);
                 }

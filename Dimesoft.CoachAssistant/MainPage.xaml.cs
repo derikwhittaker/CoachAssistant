@@ -2,6 +2,7 @@
 using System.Windows;
 using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Services;
+using Dimesoft.CoachAssistant.ViewModels;
 using Dimesoft.CoachAssistant.Views;
 
 namespace Dimesoft.CoachAssistant
@@ -39,6 +40,11 @@ namespace Dimesoft.CoachAssistant
         private void ShowOnlyActiveClicked(object sender, EventArgs e)
         {
             ViewModel.DashboardViewState = DashboardViewState.ShowActive;
+        }
+
+        private void AddNewEventsClicked(object sender, EventArgs e)
+        {
+            ViewModel.CreateEventCommand.Execute(null);
         }
     }
 }

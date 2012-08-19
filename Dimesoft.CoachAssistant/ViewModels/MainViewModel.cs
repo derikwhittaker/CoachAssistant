@@ -7,12 +7,11 @@ using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Services;
-using Dimesoft.CoachAssistant.ViewModels;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 using Event = Dimesoft.CoachAssistant.Models.Event;
 
-namespace Dimesoft.CoachAssistant
+namespace Dimesoft.CoachAssistant.ViewModels
 {
     public class MainViewModel : BaseVM
     {
@@ -21,6 +20,8 @@ namespace Dimesoft.CoachAssistant
         private DashboardViewState _dashboardViewState = DashboardViewState.ShowActive; 
         private ObservableCollection<Event> _events;
         private RelayCommand _teamListingCommand;
+        private RelayCommand _fieldListingCommand;
+        private RelayCommand _createEventCommand;
 
         public MainViewModel(){}
 
@@ -82,7 +83,19 @@ namespace Dimesoft.CoachAssistant
                                                           });
         }
 
-        private RelayCommand _fieldListingCommand;
+        public RelayCommand CreateEventCommand
+        {
+            get { return _createEventCommand ?? (_createEventCommand = new RelayCommand(CreateEvent)); }
+        }
+
+        private void CreateEvent()
+        {
+            var url = string.Format("/Views/Practice/EventCreationPage.xaml");
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
+        }
+
+
         public RelayCommand FieldListingCommand
         {
             get { return _fieldListingCommand ?? (_fieldListingCommand = new RelayCommand(FieldListing)); }
@@ -94,7 +107,6 @@ namespace Dimesoft.CoachAssistant
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
-
         
         public RelayCommand TeamListingCommand
         {
@@ -107,7 +119,6 @@ namespace Dimesoft.CoachAssistant
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
-
         
         public ObservableCollection<Event> Events
         {
@@ -129,7 +140,7 @@ namespace Dimesoft.CoachAssistant
 
                 RaisePropertyChanged(() => SelectedEvent);
 
-                if ( _selectedEvent != null && _selectedEvent.EventType == EventType.Practice)
+                if (_selectedEvent != null && _selectedEvent.EventType == EventType.Practice)
                 {
                     var url = string.Format("/Views/Practice/EventLandingPage.xaml?{0}={1}&{2}={3}", 
                         QueryStringConstants.EventId, SelectedEvent.Id, QueryStringConstants.SportTypeId, (int)SelectedEvent.SportType);

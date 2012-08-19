@@ -87,14 +87,6 @@
                                         <TextBlock Grid.Column="1" Text="{Binding LocationName}" TextWrapping="Wrap" Style="{StaticResource ListBoxAccentTextBlockStyle}" HorizontalAlignment="Right" />
                                     </Grid>
 
-                                    <!--
-								<Border Grid.Column="2" Grid.RowSpan="2"
-										VerticalAlignment="Center"
-										HorizontalAlignment="Center"
-										Width="36" Height="36">
-                                    <Image Source="{Binding SportType, Converter={StaticResource sportTypeToImageConverter}}" />
-                                </Border>
--->
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -195,6 +187,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="AddNewEventMenuItem" Text="Add New Event" Click="AddNewEventsClicked" />
                 <shell:ApplicationBarMenuItem x:Name="ShowAllEventMenuItem" Text="Show All Events" Click="ShowAllEventsClicked" />
                 <shell:ApplicationBarMenuItem x:Name="ShowOnlyActiveMenuItem" Text="Show Only Active" Click="ShowOnlyActiveClicked" />
             </shell:ApplicationBar.MenuItems>

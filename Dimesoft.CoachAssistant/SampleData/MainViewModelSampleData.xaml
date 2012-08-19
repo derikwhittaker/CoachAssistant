@@ -1,24 +1,25 @@
-﻿<local:MainViewModel 
+﻿<ViewModels:MainViewModel 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Dimesoft.CoachAssistant"
-    xmlns:Models="clr-namespace:Dimesoft.CoachAssistant.Models" >
+    xmlns:Models="clr-namespace:Dimesoft.CoachAssistant.Models"
+    xmlns:ViewModels="clr-namespace:Dimesoft.CoachAssistant.ViewModels">
     
-    <local:MainViewModel.Events>
+    <ViewModels:MainViewModel.Events>
         <Models:Event EventType="Practice" SportType="Soccer" Date="07/11/2012" TeamName="Reds" LocationName="Practice Field 1" />
         <Models:Event EventType="Practice" SportType="Baseball"  Date="07/11/2012" TeamName="Braves" LocationName="Practice Field 1" />
         <Models:Event EventType="Game" SportType="Soccer" Date="07/11/2012" TeamName="Reds"  LocationName="Field 1" />
         <Models:Event EventType="Practice" SportType="Basketball"  Date="07/11/2012" TeamName="Reds" LocationName="Practice Field 1"  />
         <Models:Event EventType="Practice" SportType="Soccer" Date="07/11/2012" TeamName="Reds"  LocationName="Practice Field 1" />
-    </local:MainViewModel.Events>
+    </ViewModels:MainViewModel.Events>
     
-    <local:MainViewModel.Items>
+    <ViewModels:MainViewModel.Items>
         <local:ItemViewModel LineOne="design one" LineTwo="Maecenas praesent accumsan bibendum" LineThree="Maecenas praesent accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur"/>
         <local:ItemViewModel LineOne="design two" LineTwo="Dictumst eleifend facilisi faucibus" LineThree="Pharetra placerat pulvinar sagittis senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent"/>
         <local:ItemViewModel LineOne="design three" LineTwo="Habitant inceptos interdum lobortis" LineThree="Accumsan bibendum dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat"/>
         <local:ItemViewModel LineOne="design four" LineTwo="Nascetur pharetra placerat pulvinar" LineThree="Pulvinar sagittis senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum"/>
         <local:ItemViewModel LineOne="design five" LineTwo="Sagittis senectus sociosqu suscipit" LineThree="Dictumst eleifend facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis"/>
         <local:ItemViewModel LineOne="design six" LineTwo="Torquent ultrices vehicula volutpat" LineThree="Senectus sociosqu suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum dictumst eleifend"/>
-    </local:MainViewModel.Items>
+    </ViewModels:MainViewModel.Items>
     
-</local:MainViewModel>
+</ViewModels:MainViewModel>

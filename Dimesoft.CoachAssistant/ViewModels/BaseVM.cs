@@ -55,7 +55,7 @@ namespace Dimesoft.CoachAssistant.ViewModels
                     break;
 
                 default:
-                    path = "../../Images/SoccerBackground_1024x768.jpg";
+                    path = "../../Images/SportsGeneralBackground_1024x768.jpg";
                     break;
             }
 
