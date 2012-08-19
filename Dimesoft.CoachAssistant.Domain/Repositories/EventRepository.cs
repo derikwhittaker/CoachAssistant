@@ -329,7 +329,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                           select drill.LazyValue.Value;
 
 
-            return results.ToList();
+            return results.OrderBy(x => x.Date).ToList();
         }
 
         public IList<TeamDto> Teams()

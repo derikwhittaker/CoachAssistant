@@ -5,18 +5,18 @@ namespace Dimesoft.CoachAssistant.Models
 {
     public class Field : ViewModelBase
     {
-        private readonly LocationDto _dto;
+        public readonly LocationDto Dto;
         private bool _selected;
 
         public Field(LocationDto dto)
         {
-            _dto = dto;
+            Dto = dto;
         }
 
         public int Id
         {
-            get { return _dto.Id; }
-            set { _dto.Id = value; RaisePropertyChanged(() => Id); }
+            get { return Dto.Id; }
+            set { Dto.Id = value; RaisePropertyChanged(() => Id); }
         }
 
         public bool Selected
@@ -27,8 +27,8 @@ namespace Dimesoft.CoachAssistant.Models
 
         public string Name
         {
-            get { return _dto.Name; }
-            set { _dto.Name = value; RaisePropertyChanged(() => Name); }
+            get { return Dto.Name; }
+            set { Dto.Name = value; RaisePropertyChanged(() => Name); }
         }
     }
 }

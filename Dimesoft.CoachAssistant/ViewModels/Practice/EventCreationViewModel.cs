@@ -6,6 +6,7 @@ using System.Windows;
 using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 using EvenTypeEnum = Dimesoft.CoachAssistant.Domain.Models.EventType;
 using EventType = Dimesoft.CoachAssistant.Models.EventType;
@@ -24,6 +25,10 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         private bool _showOpponents;
         private DateTime _eventDate = DateTime.Now;
         private DateTime _eventTime = DateTime.Now;
+        private ObservableCollection<Field> _fields;
+        private Field _selectedField;
+        private Models.Event _currentEvent = new Models.Event(new EventDto());
+        private RelayCommand _saveEventCommand;
 
         public EventCreationViewModel( IEventRepository eventRepository )
         {
@@ -60,23 +65,53 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                                                                                      return team;
                                                                                  }).ToList();
 
-                                                 HandleDataLoadedCallback(teams, eventTypes);
+                                                 var fields = _eventRepository.Locations().Select(x => new Field(x)).ToList();
+
+                                                 HandleDataLoadedCallback(teams, fields, eventTypes);
 
                                              });
             
         }
 
-        private void HandleDataLoadedCallback(IList<Team> teams, IList<EventType> eventTypes )
+        private void HandleDataLoadedCallback(IList<Team> teams, IList<Field> fields, IList<EventType> eventTypes )
         {
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 Teams = new ObservableCollection<Team>(teams);
                 Opponents = new ObservableCollection<Team>(teams);
+                Fields = new ObservableCollection<Field>(fields);
 
                 EventTypes = eventTypes;
 
                 IsBusy = false;
             });
+        }
+
+        public RelayCommand SaveEventCommand
+        {
+            get { return _saveEventCommand ?? (_saveEventCommand = new RelayCommand(SaveEvent)); }
+        }
+
+        private void SaveEvent()
+        {
+            var newEvent = new EventDto
+                {
+                    EventTypeId = SelectedEventType.Id,
+                    SportTypeId = SelectedTeam.Dto.SportTypeId,
+                    Team = SelectedTeam.Dto,
+                    Opponent = SelectedOpponent != null ? SelectedOpponent.Dto : null,
+                    Location = SelectedField.Dto,
+                    Date = new DateTime(EventDate.Year, EventDate.Month, EventDate.Day, EventTime.Hour, EventTime.Minute, 0),
+                    Notes = this.Notes,
+                };
+
+            _eventRepository.Save(newEvent);
+        }
+
+        public Models.Event CurrentEvent
+        {
+            get { return _currentEvent; }
+            set { _currentEvent = value; }
         }
 
         public IList<EventType> EventTypes
@@ -105,6 +140,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                     ShowOpponents = false;
                 }
 
+                CurrentEvent.EventType = (EvenTypeEnum)value.Id;
+
                 RaisePropertyChanged(() => SelectedEventType);
             }
         }
@@ -126,6 +163,26 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             {
                 _opponents = value;
                 RaisePropertyChanged(() => Opponents);
+            }
+        }
+
+        public ObservableCollection<Field> Fields
+        {
+            get { return _fields; }
+            set
+            {
+                _fields = value;
+                RaisePropertyChanged(() => Fields);
+            }
+        }
+
+        public Field SelectedField
+        {
+            get { return _selectedField; }
+            set
+            {
+                _selectedField = value;                
+                RaisePropertyChanged(() => SelectedField);
             }
         }
 
@@ -178,5 +235,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                 RaisePropertyChanged(() => EventTime);
             }
         }
+
+        public string Notes { get; set; }
     }
 }

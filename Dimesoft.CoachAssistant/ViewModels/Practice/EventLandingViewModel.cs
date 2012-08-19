@@ -208,7 +208,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         {
             PracticeEvent.IsCompleted = true;
             
-            _eventRepository.Save(PracticeEvent._dto);
+            _eventRepository.Save(PracticeEvent.Dto);
         }
 
         public BitmapImage CreateNewPracticeTileImage

@@ -6,22 +6,22 @@ namespace Dimesoft.CoachAssistant.Models
 {
     public class Event : ViewModelBase
     {
-        public readonly EventDto _dto;
-
+        public readonly EventDto Dto;
 
         public Event(EventDto dto)
         {
-            _dto = dto;
+            Dto = dto;
         }
 
         public Domain.Models.EventType EventType
         {
-            get { return _dto.EventType; }
+            get { return Dto.EventType; }
+            set { Dto.EventTypeId = (int)value; }
         }
 
         public SportType SportType
         {
-            get { return _dto.SportType; }
+            get { return Dto.SportType; }
         }
 
         public string EventName
@@ -41,16 +41,16 @@ namespace Dimesoft.CoachAssistant.Models
 
         public string TeamName
         {
-            get { return _dto.Team.Name; }
+            get { return Dto.Team.Name; }
         }
 
         public string OpponentTeamName
         {
             get
             {
-                if (_dto.Opponent != null)
+                if (Dto.Opponent != null)
                 {
-                    return _dto.Opponent.Name;    
+                    return Dto.Opponent.Name;    
                 }
 
                 return string.Empty;
@@ -59,23 +59,23 @@ namespace Dimesoft.CoachAssistant.Models
 
         public string LocationName
         {
-            get { return _dto.Location.Name; }
+            get { return Dto.Location.Name; }
         }
         
         public string Date
         {
-            get { return _dto.Date.ToString(); }
+            get { return Dto.Date.ToString(); }
         }
         
         public object Id
         {
-            get { return _dto.Id; }
+            get { return Dto.Id; }
         }
 
         public bool IsCompleted
         {
-            get { return _dto.Completed; }
-            set { _dto.Completed = value; }
+            get { return Dto.Completed; }
+            set { Dto.Completed = value; }
         }
     }
 }

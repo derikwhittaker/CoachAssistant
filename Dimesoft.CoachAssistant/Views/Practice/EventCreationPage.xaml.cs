@@ -1,4 +1,5 @@
-﻿using Dimesoft.CoachAssistant.Domain.Repositories;
+﻿using System;
+using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.ViewModels.Practice;
 
 namespace Dimesoft.CoachAssistant.Views.Practice
@@ -26,6 +27,11 @@ namespace Dimesoft.CoachAssistant.Views.Practice
         public EventCreationViewModel ViewModel
         {
             get { return DataContext as EventCreationViewModel; }
+        }
+
+        private void SaveEventClicked(object sender, EventArgs e)
+        {
+            ViewModel.SaveEventCommand.Execute(null);
         }
     }
 }
