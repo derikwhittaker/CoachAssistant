@@ -72,7 +72,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                                                  if (drills.Any())
                                                  {
                                                      var allDrills = _drillsRepository.ForSport(asDto.SportType);
-                                                     asDto.PracticeDrills.Clear();
+                                                     asDto.PracticeDrills = new List<PracticeDrillDto>();
 
                                                      foreach (var drill in drills)
                                                      {

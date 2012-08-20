@@ -9,6 +9,7 @@ namespace Dimesoft.CoachAssistant.Domain.Models
         {
             Team = new TeamDto();
             Location = new LocationDto();
+            PracticeDrills = new List<PracticeDrillDto>();
         }
 
         public int Id { get; set; }

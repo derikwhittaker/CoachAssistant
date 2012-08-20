@@ -64,7 +64,7 @@ namespace Dimesoft.CoachAssistant.Models
         
         public string Date
         {
-            get { return Dto.Date.ToString(); }
+            get { return Dto.Date.ToString("g"); }
         }
         
         public object Id

@@ -9,16 +9,19 @@ namespace Dimesoft.CoachAssistant.Models
     {
         public PracticeEvent(EventDto dto) : base(dto)
         {
-            PracticeDrills = dto.PracticeDrills.Select(x => new PracticeDrill(x)).ToList();
+            if (dto.PracticeDrills != null)
+            {
+                PracticeDrills = dto.PracticeDrills.Select(x => new PracticeDrill(x)).ToList();    
+            }
         }
 
-        private IList<PracticeDrill> _practiceDrills;
-
+        private IList<PracticeDrill> _practiceDrills = new List<PracticeDrill>();
         public IList<PracticeDrill> PracticeDrills
         {
             get { return _practiceDrills; }
             set { _practiceDrills = value; }
         }
+
     }
 
     public class PracticeDrill : ViewModelBase
