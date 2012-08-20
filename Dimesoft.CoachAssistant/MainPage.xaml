@@ -135,7 +135,7 @@
 		            </telerikPrimitives:RadSlideHubTile>
 					<telerikPrimitives:RadSlideHubTile Grid.Column="0"
 												 Grid.Row="1"
-												 Title="Practice Locations"
+												 Title="Practice/Game Fields"
                                                  Width="276"
                                                  Height="132"
                                                  HorizontalAlignment="Center"

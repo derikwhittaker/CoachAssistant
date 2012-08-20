@@ -171,9 +171,9 @@
  
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized" StateChanged="ApplicationBar_StateChanged">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Practice Completed" Click="PracticeCompletedClicked" />
+                <shell:ApplicationBarMenuItem x:Name="TogglePracticeStateMenuItem" Text="Practice Completed" Click="PracticeCompletedClicked" />
                 <shell:ApplicationBarMenuItem Text="Pin Event" Click="PinEventClicked" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

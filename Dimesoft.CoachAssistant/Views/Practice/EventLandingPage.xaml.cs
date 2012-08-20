@@ -5,6 +5,7 @@ using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Services;
 using Dimesoft.CoachAssistant.ViewModels.Practice;
+using Microsoft.Phone.Shell;
 using Telerik.Windows.Controls;
 using NavigationService = Dimesoft.CoachAssistant.Services.NavigationService;
 
@@ -23,7 +24,32 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             this.SetValue(RadSlideContinuumAnimation.ApplicationHeaderElementProperty, this.PageTitle);
             this.SetValue(RadSlideContinuumAnimation.HeaderElementProperty, this.PageTitle);
             
-            DataContext = new EventLandingViewModel(new EventRepository(), new DrillsRepository(),  new NavigationService());
+            var vm = new EventLandingViewModel(new EventRepository(), new DrillsRepository(),  new NavigationService());
+
+            vm.PropertyChanged += (s, e) =>
+                                      {
+                                          if (e.PropertyName == "PracticeEvent")
+                                          {
+                                              SetPracticeStateMenuState();
+                                          }
+                                      };
+
+            DataContext = vm;
+        }
+
+        private void SetPracticeStateMenuState()
+        {
+        
+            var appBar = (ApplicationBarMenuItem)this.ApplicationBar.MenuItems[0];
+            if (ViewModel.PracticeEvent.IsCompleted)
+            {
+                
+                appBar.Text = "Mark as Active";
+            }
+            else
+            {
+                appBar.Text = "Mark as Compledted";
+            }
         }
 
         protected override void OnLoaded(object sender, System.Windows.RoutedEventArgs args)
@@ -47,6 +73,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             {
                 ViewModel.LoadData(EventId);
             }
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -56,12 +83,12 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             EventId = NavigationContext.TryGetQueryInt(QueryStringConstants.EventId);
             SportTypeId = NavigationContext.TryGetQueryInt(QueryStringConstants.SportTypeId);
 
-            PanoramaBackground.ImageSource = ViewModel.GetBackgroundImage(SportTypeId);
+            PanoramaBackground.ImageSource = ViewModel.GetBackgroundImage(SportTypeId);            
         }
 
         private void PracticeCompletedClicked(object sender, EventArgs e)
         {
-            ViewModel.PracticeCompletedCommand.Execute(null);
+            ViewModel.ToggleEventStateCommand.Execute(null);
         }
 
         private void PinEventClicked(object sender, EventArgs e)
@@ -72,6 +99,11 @@ namespace Dimesoft.CoachAssistant.Views.Practice
         public EventLandingViewModel ViewModel
         {
             get { return DataContext as EventLandingViewModel; }
+        }
+
+        private void ApplicationBar_StateChanged(object sender, Microsoft.Phone.Shell.ApplicationBarStateChangedEventArgs e)
+        {
+            SetPracticeStateMenuState();
         }
 
 

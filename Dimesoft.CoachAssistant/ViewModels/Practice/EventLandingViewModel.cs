@@ -199,14 +199,14 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
-        public RelayCommand PracticeCompletedCommand
+        public RelayCommand ToggleEventStateCommand
         {
-            get { return _practiceCompletedCommand ?? (_practiceCompletedCommand = new RelayCommand(PracticeCompleted)); }
+            get { return _toggleEventStateCommand ?? (_toggleEventStateCommand = new RelayCommand(ToggleEventState)); }
         }
 
-        private void PracticeCompleted()
+        private void ToggleEventState()
         {
-            PracticeEvent.IsCompleted = true;
+            PracticeEvent.IsCompleted = !PracticeEvent.IsCompleted;
             
             _eventRepository.Save(PracticeEvent.Dto);
         }
@@ -271,7 +271,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 
         private PracticeDrill _selectedPracticeDrill;
         private bool _showSelectionCheckBoxes = false;
-        private RelayCommand _practiceCompletedCommand;
+        private RelayCommand _toggleEventStateCommand;
         private RelayCommand _pinEventCommand;
 
 
