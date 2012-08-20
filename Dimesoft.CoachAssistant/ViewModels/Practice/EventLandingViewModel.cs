@@ -211,6 +211,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             _eventRepository.Save(PracticeEvent.Dto);
         }
 
+        public RelayCommand PinEventCommand
+        {
+            get { return _pinEventCommand ?? (_pinEventCommand = new RelayCommand(PinEvent)); }
+        }
+
+        private void PinEvent()
+        {
+            throw new NotImplementedException();
+        }
+
         public BitmapImage CreateNewPracticeTileImage
         {
             get
@@ -262,6 +272,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         private PracticeDrill _selectedPracticeDrill;
         private bool _showSelectionCheckBoxes = false;
         private RelayCommand _practiceCompletedCommand;
+        private RelayCommand _pinEventCommand;
 
 
         public PracticeDrill SelectedPracticeDrill
@@ -313,5 +324,6 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             set { _showSelectionCheckBoxes = value; RaisePropertyChanged(() => ShowSelectionCheckBoxes); }
         }
 
+        
     }
 }

@@ -64,12 +64,17 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             ViewModel.PracticeCompletedCommand.Execute(null);
         }
 
+        private void PinEventClicked(object sender, EventArgs e)
+        {
+            ViewModel.PinEventCommand.Execute(null);
+        }
+
         public EventLandingViewModel ViewModel
         {
             get { return DataContext as EventLandingViewModel; }
         }
 
- 
+
     }
 
     public static class NavigationContextExtensions
