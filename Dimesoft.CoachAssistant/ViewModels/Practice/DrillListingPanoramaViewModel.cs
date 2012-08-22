@@ -95,7 +95,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
     {
         private string _sportName;
         private int _sportId;
-        private IList<Drill> _drills;
+        private IList<Drill> _drills = new List<Drill>();
 
         public string SportName
         {
@@ -112,7 +112,17 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         public IList<Drill> Drills
         {
             get { return _drills; }
-            set { _drills = value; RaisePropertyChanged(() => Drills); }
+            set 
+            { 
+                _drills = value; 
+                RaisePropertyChanged(() => Drills); 
+                RaisePropertyChanged(() => DrillCount);
+            }
+        }
+
+        public string DrillCount
+        {
+            get { return string.Format("{0} Drills", _drills.Count); }
         }
     }
 }

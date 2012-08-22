@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Services;
 using Dimesoft.CoachAssistant.ViewModels.Practice;
@@ -18,6 +19,11 @@ namespace Dimesoft.CoachAssistant.Views.Practice
 
             // testing
             vm.LoadData(0, new List<int>());
+        }
+
+        private void CreateNewDrillButtonClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

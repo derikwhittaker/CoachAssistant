@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -24,7 +24,16 @@
             </controls:Panorama.Background>
             <controls:Panorama.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding SportName}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding SportName}" />
+                        <TextBlock Grid.Row="1" Text="{Binding DrillCount}" 
+                                   Margin="15,3"
+                                   Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" />
+                    </Grid>                    
                 </DataTemplate>
             </controls:Panorama.HeaderTemplate>
             <controls:Panorama.ItemTemplate>               
@@ -32,30 +41,17 @@
                     <Grid>
                         <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Drills}"                          
 									telerik:InteractionEffectManager.IsInteractionEnabled="True" 
-									ItemContainerStyle="{StaticResource StretchableListBoxItemStyle}"
-                         >
+									ItemContainerStyle="{StaticResource StretchableListBoxItemStyle}">
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto" />
-                                            <RowDefinition Height="auto" />
-                                        </Grid.RowDefinitions>
-
-                                        <Border Grid.Column="0" Grid.RowSpan="2"
+                                        <Border 
 										VerticalAlignment="Center"
 										HorizontalAlignment="Center"
 										Width="36" Height="36">
 
                                         </Border>
-
-                                        <!--<CheckBox Grid.Column="0" IsChecked="{Binding Selected, Mode=TwoWay}" />-->
-
                                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
 
                                     </Grid>
@@ -73,5 +69,11 @@
                                             Content="Loading Practice Drills"
                                             AnimationStyle="AnimationStyle3" />
     </Grid>
-
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/Apply.png" Text="New Drill" Click="CreateNewDrillButtonClick"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
 </phone:PhoneApplicationPage>
