@@ -169,6 +169,7 @@
 												 Foreground="{StaticResource BlueColorBrush}"
                                                  FontSize="{StaticResource PhoneFontSizeMedium}"
                                                  FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                       Command="{Binding DrillsListingCommand}"
                                                  telerikPrimitives:RadHubTileService.GroupTag="FirstLook"
                                                  telerik:InteractionEffectManager.IsInteractionEnabled="True">
 		                <telerikPrimitives:RadSlideHubTile.Picture>

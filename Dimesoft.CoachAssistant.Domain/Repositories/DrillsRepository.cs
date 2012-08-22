@@ -10,6 +10,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
     {
         void Save(PracticeDrillDto drill);
         IList<PracticeDrillDto> ForSport(SportType sportType);
+        IList<PracticeDrillDto> All();
     }
 
     public class DrillsRepository : IDrillsRepository
@@ -71,6 +72,14 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                           select drill.LazyValue.Value;
             
             return results.ToList();
-        } 
+        }
+
+        public IList<PracticeDrillDto> All()
+        {
+            var results = from drill in DB.Database.Query<PracticeDrillDto, int, int>(CoachesDatabase.SportTypeDataIndex)
+                          select drill.LazyValue.Value;
+
+            return results.ToList();
+        }
     }
 }

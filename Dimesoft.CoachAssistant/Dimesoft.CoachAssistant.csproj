@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\Fields\CreationViewModel.cs" />
     <Compile Include="ViewModels\Fields\ListingViewModel.cs" />
+    <Compile Include="ViewModels\Practice\DrillListingPanoramaViewModel.cs" />
     <Compile Include="ViewModels\Practice\DrillCreationViewModel.cs" />
     <Compile Include="ViewModels\Practice\DrillListingViewModel.cs" />
     <Compile Include="ViewModels\Practice\EventCreationViewModel.cs" />
@@ -134,6 +135,9 @@
     </Compile>
     <Compile Include="Views\Practice\DrillListingPage.xaml.cs">
       <DependentUpon>DrillListingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Practice\DrillsListingPanoramaPage.xaml.cs">
+      <DependentUpon>DrillsListingPanoramaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Practice\EventCreationPage.xaml.cs">
       <DependentUpon>EventCreationPage.xaml</DependentUpon>
@@ -187,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Practice\DrillListingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Practice\DrillsListingPanoramaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

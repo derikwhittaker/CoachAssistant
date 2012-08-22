@@ -22,6 +22,7 @@ namespace Dimesoft.CoachAssistant.ViewModels
         private RelayCommand _teamListingCommand;
         private RelayCommand _fieldListingCommand;
         private RelayCommand _createEventCommand;
+        private RelayCommand _drillsListingCommand;
 
         public MainViewModel(){}
 
@@ -95,6 +96,17 @@ namespace Dimesoft.CoachAssistant.ViewModels
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
+        public RelayCommand DrillsListingCommand
+        {
+            get { return _drillsListingCommand ?? (_drillsListingCommand = new RelayCommand(DrillsListing)); }
+        }
+
+        private void DrillsListing()
+        {
+            var url = string.Format("/Views/Practice/DrillsListingPanoramaPage.xaml");
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));            
+        }
 
         public RelayCommand FieldListingCommand
         {
