@@ -13,7 +13,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
         {
             InitializeComponent();
 
-            var vm = new DrillListingPanoramaViewModel(new DrillsRepository(), new SessonStateService());
+            var vm = new DrillListingPanoramaViewModel( new NavigationService(),  new DrillsRepository(), new SessonStateService());
 
             DataContext = vm;
 
@@ -23,7 +23,12 @@ namespace Dimesoft.CoachAssistant.Views.Practice
 
         private void CreateNewDrillButtonClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ViewModel.CreateDrillCommand.Execute(null);
+        }
+
+        public DrillListingPanoramaViewModel ViewModel
+        {
+            get { return (DrillListingPanoramaViewModel) DataContext; }
         }
     }
 }

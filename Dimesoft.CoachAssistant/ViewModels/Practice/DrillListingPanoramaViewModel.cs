@@ -15,14 +15,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 {
     public class DrillListingPanoramaViewModel : BaseVM
     {
+        private readonly INavigationService _navigationService;
         private readonly IDrillsRepository _drillsRepository;
         private readonly ISessonStateService _sessonStateService;
         private IList<Drill> _drills;
-        private RelayCommand _selectItemCommand;
         private IList<SportDrills> _sportDrills;
+        private RelayCommand _createDrillCommand;
 
-        public DrillListingPanoramaViewModel(IDrillsRepository drillsRepository, ISessonStateService sessonStateService)
+        public DrillListingPanoramaViewModel( INavigationService navigationService, IDrillsRepository drillsRepository, ISessonStateService sessonStateService)
         {
+            _navigationService = navigationService;
             _drillsRepository = drillsRepository;
             _sessonStateService = sessonStateService;
         }
@@ -72,6 +74,21 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                                         
                                         IsBusy = false;
                                     });
+        }
+
+        public RelayCommand CreateDrillCommand
+        {
+            get { return _createDrillCommand ?? (_createDrillCommand = new RelayCommand(CreateDrill)); }
+        }
+
+        private void CreateDrill()
+        {
+            //DrillCreationPage.xaml
+            var url = string.Format("/Views/Practice/DrillCreationPage.xaml?{0}={1}&{2}={3}",
+                QueryStringConstants.SportId, 0,
+                QueryStringConstants.CallingPageName, RoutingPageConstants.PracticeEventLandingPage);
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         private IList<Drill> Drills

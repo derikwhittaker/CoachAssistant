@@ -9,13 +9,19 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views"
     xmlns:Behaviors="clr-namespace:Dimesoft.CoachAssistant.Behaviors"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:Converters="clr-namespace:Dimesoft.CoachAssistant.Converters"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"   
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"   
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <Converters:BooleanToVisibilityConverter x:Key="b2v" />
+    </phone:PhoneApplicationPage.Resources>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" >
         <Grid.Background>
@@ -41,21 +47,31 @@
         	<Grid.RowDefinitions>
         		<RowDefinition Height="auto" />     	
 				<RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 			</Grid.RowDefinitions>
-			      
-				  
-			<TextBlock Grid.Row="0" Text="Drill Name:" />
-            <TextBox Grid.Row="1" Text="{Binding DrillName, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
+
+            <TextBlock Grid.Row="0" Text="Sport Type:" Visibility="{Binding ShowSportSelector, Converter={StaticResource b2v}}" />
+
+            <telerikInput:RadListPicker Grid.Row="1" 
+                                        ItemsSource="{Binding Sports}" 
+                                        DisplayMemberPath="Name"                                                                     
+                                        SelectedItem="{Binding SelectedSport, Mode=TwoWay}"
+                                        Visibility="{Binding ShowSportSelector, Converter={StaticResource b2v}}"
+                                        />
+
+                <TextBlock Grid.Row="2" Text="Drill Name:" />
+            <TextBox Grid.Row="3" Text="{Binding DrillName, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
                 <i:Interaction.Behaviors>
                     <Behaviors:UpdateOnChangeBehavior />
                 </i:Interaction.Behaviors>
             </TextBox>
 
-                <TextBlock Grid.Row="2" Text="Drill Notes:" Margin="0,10,0,0" />
-            <TextBox Grid.Row="3" Text="{Binding DrillNotes, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" Height="200">
+                <TextBlock Grid.Row="4" Text="Drill Notes:" Margin="0,10,0,0" />
+            <TextBox Grid.Row="5" Text="{Binding DrillNotes, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" Height="200">
                 <i:Interaction.Behaviors>
                     <Behaviors:UpdateOnChangeBehavior />
                 </i:Interaction.Behaviors>

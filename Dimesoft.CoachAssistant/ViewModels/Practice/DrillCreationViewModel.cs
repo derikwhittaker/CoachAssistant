@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
+using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
 using GalaSoft.MvvmLight.Command;
 
@@ -11,6 +13,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
     {
         private int _currentSportId = 0;
         private string _callingPageName;
+        private IList<Sport> _sports;
+        private Sport _selectedSport;
         private readonly IDrillsRepository _drillsRepository;
         private readonly ISessonStateService _sessonStateService;
         private readonly INavigationService _navigationService;
@@ -26,14 +30,24 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             _navigationService = navigationService;
 
             PageTitle = "New Practice Drill";
+
+            Sports = new List<Sport>
+                         {
+                             new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
+                             new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
+                             new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
+                             new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
+                         };
         }
 
         public void LoadData(int sportId, string callingPageName)
         {
-            _currentSportId = sportId;
+            CurrentSportId = sportId;
             _callingPageName = callingPageName;
 
             SportName = ((SportType) Enum.Parse(typeof (SportType), sportId.ToString(), true)).ToString();
+
+            RaisePropertyChanged(() => ShowSportSelector);
         }
 
         public string SportName
@@ -77,6 +91,42 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             _sessonStateService.Set(SessoinStateConstants.NewDrill, newId);
 
             _navigationService.GoBack();
+        }
+
+        public bool ShowSportSelector
+        {
+            get { return _currentSportId == 0; }
+        }
+
+        public int CurrentSportId
+        {
+            get { return _currentSportId; }
+            set { _currentSportId = value;
+            RaisePropertyChanged(() => CurrentSportId);}
+        }
+
+        public Sport SelectedSport
+        {
+            get { return _selectedSport; }
+            set
+            {
+                _selectedSport = value;
+                CurrentSportId = value.Id;
+                SportName = ((SportType)Enum.Parse(typeof(SportType), value.Id.ToString(), true)).ToString();
+
+                RaisePropertyChanged(() => SelectedSport);
+                SaveNewDrillCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public IList<Sport> Sports
+        {
+            get { return _sports; }
+            set
+            {
+                _sports = value;
+                RaisePropertyChanged(() => Sports);
+            }
         }
     }
 

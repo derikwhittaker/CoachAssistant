@@ -14,7 +14,18 @@ namespace Dimesoft.CoachAssistant.Views.Practice
         {
             InitializeComponent();
 
-            DataContext = new DrillCreationViewModel(new DrillsRepository(), new SessonStateService(), new NavigationService());
+            var vm = new DrillCreationViewModel(new DrillsRepository(), new SessonStateService(), new NavigationService());
+
+            vm.PropertyChanged += (s, e) =>
+                                      {
+                                          if (e.PropertyName == "CurrentSportId")
+                                          {
+                                              var sportId = ViewModel.CurrentSportId;
+                                              BackgroundImage.ImageSource = ViewModel.GetBackgroundImage(sportId);
+                                          }
+                                      };
+
+            DataContext = vm;
         }
 
         protected override void OnLoaded(object sender, System.Windows.RoutedEventArgs args)
