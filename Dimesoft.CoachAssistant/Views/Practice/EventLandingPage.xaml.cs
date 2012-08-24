@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Navigation;
 using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Repositories;
@@ -24,7 +25,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             this.SetValue(RadSlideContinuumAnimation.ApplicationHeaderElementProperty, this.PageTitle);
             this.SetValue(RadSlideContinuumAnimation.HeaderElementProperty, this.PageTitle);
             
-            var vm = new EventLandingViewModel(new EventRepository(), new DrillsRepository(),  new NavigationService());
+            var vm = new EventLandingViewModel(new EventRepository(), new DrillsRepository(),  new NavigationService(), new TileService());
 
             vm.PropertyChanged += (s, e) =>
                                       {
@@ -93,7 +94,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
 
         private void PinEventClicked(object sender, EventArgs e)
         {
-            ViewModel.PinEventCommand.Execute(null);
+            ViewModel.PinEventCommand.Execute(null);            
         }
 
         public EventLandingViewModel ViewModel

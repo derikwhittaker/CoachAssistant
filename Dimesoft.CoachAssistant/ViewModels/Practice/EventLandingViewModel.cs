@@ -20,15 +20,18 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         private readonly IEventRepository _eventRepository;
         private readonly IDrillsRepository _drillsRepository;
         private readonly INavigationService _navigationService;
+        private readonly ITileService _tileService;
 
         // for sample data only
         public EventLandingViewModel() { }
 
-        public EventLandingViewModel(IEventRepository eventRepository, IDrillsRepository drillsRepository, INavigationService navigationService) : this()
+        public EventLandingViewModel(IEventRepository eventRepository, IDrillsRepository drillsRepository, 
+            INavigationService navigationService, ITileService tileService) : this()
         {
             _eventRepository = eventRepository;
             _drillsRepository = drillsRepository;
             _navigationService = navigationService;
+            _tileService = tileService;
         }
 
         public void LoadData(int eventId)
@@ -218,7 +221,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 
         private void PinEvent()
         {
-            throw new NotImplementedException();
+            _tileService.CreateEventTile(PracticeEvent.SportType, PracticeEvent.EventType, PracticeEvent.Id,
+                PracticeEvent.Dto.Date, PracticeEvent.LocationName, PracticeEvent.TeamName, PracticeEvent.OpponentTeamName);
         }
 
         public BitmapImage CreateNewPracticeTileImage
