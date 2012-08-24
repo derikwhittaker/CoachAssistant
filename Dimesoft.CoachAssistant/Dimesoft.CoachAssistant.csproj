@@ -244,8 +244,21 @@
     <Resource Include="Images\Tiles\SportsFieldTile_132x276.jpg" />
     <Resource Include="Images\Tiles\SportsPracticeTile_280x132.jpg" />
     <Resource Include="Images\Tiles\SportsTeamTile_132x276.jpg" />
-    <Resource Include="Images\AppBarIcons\Apply.png" />
-    <Resource Include="Images\AppBarIcons\Cancel.png" />
+    <Content Include="Images\AppBarIcons\appbar.add.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\AppBarIcons\appbar.cancel.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\AppBarIcons\appbar.check.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\AppBarIcons\appbar.new.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\AppBarIcons\appbar.save.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

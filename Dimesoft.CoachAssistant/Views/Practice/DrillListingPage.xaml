@@ -80,8 +80,8 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/Apply.png" Text="Select" Click="SelectItemButtonClick"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/Cancel.png" Text="Cancel" Click="CancelItemButtonClick" />
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.check.rest.png" Text="Select" Click="SelectItemButtonClick"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.cancel.rest.png" Text="Cancel" Click="CancelItemButtonClick" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

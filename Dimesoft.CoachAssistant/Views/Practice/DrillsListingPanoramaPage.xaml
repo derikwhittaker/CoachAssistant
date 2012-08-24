@@ -72,7 +72,7 @@
     
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/Apply.png" Text="New Drill" Click="CreateNewDrillButtonClick"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.new.rest.png" Text="New Drill" Click="CreateNewDrillButtonClick"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

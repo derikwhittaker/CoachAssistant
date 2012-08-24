@@ -59,7 +59,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="New Team" Click="CreateNewFieldClicked"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.new.rest.png" Text="New Team" Click="CreateNewFieldClicked"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

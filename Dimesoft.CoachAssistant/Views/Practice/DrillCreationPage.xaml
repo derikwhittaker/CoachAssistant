@@ -83,7 +83,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Save" Click="SaveNewDrillClicked"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.save.rest.png" Text="Save" Click="SaveNewDrillClicked"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

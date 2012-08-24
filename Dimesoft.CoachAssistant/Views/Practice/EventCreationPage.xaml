@@ -90,10 +90,13 @@
                     </telerikInput:RadListPicker>                    
 
                     <TextBlock Grid.Row="6" Text="Date:" Margin="0,10,0,0" />
-                    <telerikInput:RadDatePicker Grid.Row="7" SelectorFormat="d/m/y" Value="{Binding EventDate, Mode=TwoWay}"  />
+                    <telerikInput:RadDatePicker Grid.Row="7" SelectorFormat="d/m/y" Value="{Binding EventDate, Mode=TwoWay}"  OkButtonIconUri="/Images/AppBarIcons/appbar.check.rest.png" 
+                                                CancelButtonIconUri="/Images/AppBarIcons/appbar.cancel.rest.png"/>
 
                     <TextBlock Grid.Row="8" Text="Time:" Margin="0,10,0,0" />
-                    <telerikInput:RadTimePicker Grid.Row="9" Value="{Binding EventTime, Mode=TwoWay}"  />
+                    <telerikInput:RadTimePicker Grid.Row="9" Value="{Binding EventTime, Mode=TwoWay}" 
+                                                OkButtonIconUri="/Images/AppBarIcons/appbar.check.rest.png" 
+                                                CancelButtonIconUri="/Images/AppBarIcons/appbar.cancel.rest.png"  />
                     <!--SelectorFormat="h/m"-->
                     <TextBlock Grid.Row="10" Text="Field:" Margin="0,10,0,0" />
                     <telerikInput:RadListPicker Grid.Row="11" 
@@ -117,7 +120,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Save" Click="SaveEventClicked"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.save.rest.png" Text="Save" Click="SaveEventClicked"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

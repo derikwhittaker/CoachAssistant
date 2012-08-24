@@ -55,7 +55,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True" >
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Save" Click="SaveFieldClicked"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBarIcons/appbar.save.rest.png" Text="Save" Click="SaveFieldClicked"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
