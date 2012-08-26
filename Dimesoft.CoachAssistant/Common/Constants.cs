@@ -2,6 +2,7 @@
 {
     public class QueryStringConstants
     {
+        public const string FromTile = "FromTile";
         public const string CallingPageName = "CallingPageName";
         public const string SportTypeId = "SportTypeId";
         public const string EventId = "EventId";

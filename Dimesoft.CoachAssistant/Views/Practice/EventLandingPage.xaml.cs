@@ -17,6 +17,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
     {
         public int EventId { get; set; }
         public int SportTypeId { get; set; }
+        public bool FromTile { get; set; }
 
         private ISessonStateService _sessonStateService = new SessonStateService();
         public EventLandingPage() : base()
@@ -42,6 +43,19 @@ namespace Dimesoft.CoachAssistant.Views.Practice
                                       };
 
             DataContext = vm;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if ( FromTile )
+            {
+                e.Cancel = true;
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            else
+            {
+                base.OnBackKeyPress(e);    
+            }
         }
 
         private void SetPinStateMenuState()
@@ -101,6 +115,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
         {
             base.OnNavigatedTo(e);
 
+            FromTile = !string.IsNullOrWhiteSpace( NavigationContext.TryGetQueryString(QueryStringConstants.FromTile) );
             EventId = NavigationContext.TryGetQueryInt(QueryStringConstants.EventId);
             SportTypeId = NavigationContext.TryGetQueryInt(QueryStringConstants.SportTypeId);
 
