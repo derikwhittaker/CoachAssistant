@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Navigation;
 using Dimesoft.CoachAssistant.Common;
@@ -32,10 +33,29 @@ namespace Dimesoft.CoachAssistant.Views.Practice
                                           if (e.PropertyName == "PracticeEvent")
                                           {
                                               SetPracticeStateMenuState();
+                                              SetPinStateMenuState();
+                                          }
+                                          else if (e.PropertyName == "IsEventPinned")
+                                          {
+                                              SetPinStateMenuState();
                                           }
                                       };
 
             DataContext = vm;
+        }
+
+        private void SetPinStateMenuState()
+        {
+            var appBar = (ApplicationBarMenuItem)this.ApplicationBar.MenuItems[1];
+            if (ViewModel.IsEventPinned)
+            {
+
+                appBar.Text = "Unpin Event";
+            }
+            else
+            {
+                appBar.Text = "Pin Event";
+            }
         }
 
         private void SetPracticeStateMenuState()
@@ -94,7 +114,7 @@ namespace Dimesoft.CoachAssistant.Views.Practice
 
         private void PinEventClicked(object sender, EventArgs e)
         {
-            ViewModel.PinEventCommand.Execute(null);            
+            ViewModel.TogglePinStateForEventCommand.Execute(null);            
         }
 
         public EventLandingViewModel ViewModel

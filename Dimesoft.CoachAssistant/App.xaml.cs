@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Navigation;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Microsoft.Phone.Controls;
@@ -21,6 +22,11 @@ namespace Dimesoft.CoachAssistant
         /// </summary>
         public App()
         {
+            if (!Debugger.IsAttached)
+            {
+                Debugger.Launch();
+            }
+
             Database = new DB();
 
             // Global handler for uncaught exceptions. 
@@ -53,7 +59,7 @@ namespace Dimesoft.CoachAssistant
             }
 
         }
-
+        
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)

@@ -19,7 +19,9 @@
       <Capability Name="ID_CAP_APPOINTMENTS" />
     </Capabilities>
     <Tasks>
+      <!--<DefaultTask Name="_default" NavigationPage="/Views/Practice/EventLandingPage.xaml?EventId=1" />-->
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+      
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="Dimesoft.CoachAssistantToken" TaskName="_default">

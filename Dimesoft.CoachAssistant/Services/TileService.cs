@@ -8,22 +8,25 @@ namespace Dimesoft.CoachAssistant.Services
     public interface ITileService
     {
         void CreateEventTile( SportType sport, EventType eventType, int eventId, DateTime eventDateTime, string fieldName, string teamName, string opponentName = "" );
-        void DeleteSecondaryTile(string tileUri);
+        void DeleteSecondaryTile(SportType sport, int eventId);
+        bool SecondaryEvenTileExists(SportType sport, int eventId);
     }
 
     public class TileService : ITileService
     {
         public const string BackImagePath = "/Images/Tiles/{0}SecondaryBackTile_173x173.png";
         public const string FrontImagePath = "/Images/Tiles/{0}SecondaryTile_173x173.png";
+        public const string EventSecondaryTileQuery = "FromTile=True&EventId={0}&SportTypeId={1}";
 
         public void CreateEventTile( SportType sport, EventType eventType, int eventId, DateTime eventDateTime, string fieldName, string teamName, string opponentName = "" )
         {
-            var tileUri = string.Format("/EventLandingPage.xaml&EventId={0}", eventId);
+            var tileParms = string.Format(EventSecondaryTileQuery, eventId, (int)sport);
+            var tileUri = string.Format("/Views/Practice/EventLandingPage.xaml?{0}", tileParms);
             var tileImages = GetImages(sport);
             var frontTitle = GetTitle(eventType, teamName, opponentName);
             var backTitle = GetBackTitle(eventDateTime);
 
-            DeleteSecondaryTile(tileUri);
+            DeleteSecondaryTile(sport, eventId);
 
             var newTileData = new StandardTileData
                                   {
@@ -37,14 +40,23 @@ namespace Dimesoft.CoachAssistant.Services
             ShellTile.Create(new Uri(tileUri, UriKind.RelativeOrAbsolute), newTileData);
         }
 
-        public void DeleteSecondaryTile(string tileUri)
+        public void DeleteSecondaryTile(SportType sport, int eventId)
         {
-            var secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(tileUri));
+            var tileParms = string.Format(EventSecondaryTileQuery, eventId, (int)sport);
+            var secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(tileParms));
 
             if (secondaryTile != null)
             {
                 secondaryTile.Delete();
             }
+        }
+
+        public bool SecondaryEvenTileExists(SportType sport, int eventId)
+        {
+            var tileParms = string.Format(EventSecondaryTileQuery, eventId, (int)sport);
+            var secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains(tileParms));
+
+            return secondaryTile != null;
         }
 
         private string GetBackTitle(DateTime eventDateTime )

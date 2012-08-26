@@ -214,15 +214,25 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             _eventRepository.Save(PracticeEvent.Dto);
         }
 
-        public RelayCommand PinEventCommand
+        public RelayCommand TogglePinStateForEventCommand
         {
-            get { return _pinEventCommand ?? (_pinEventCommand = new RelayCommand(PinEvent)); }
+            get { return _pinEventCommand ?? (_pinEventCommand = new RelayCommand(TogglePinStateForEvent)); }
         }
 
-        private void PinEvent()
+        private void TogglePinStateForEvent()
         {
-            _tileService.CreateEventTile(PracticeEvent.SportType, PracticeEvent.EventType, PracticeEvent.Id,
-                PracticeEvent.Dto.Date, PracticeEvent.LocationName, PracticeEvent.TeamName, PracticeEvent.OpponentTeamName);
+            if (_tileService.SecondaryEvenTileExists(PracticeEvent.SportType, PracticeEvent.Id))
+            {
+                _tileService.DeleteSecondaryTile(PracticeEvent.SportType, PracticeEvent.Id);
+            }
+            else
+            {
+                _tileService.CreateEventTile(PracticeEvent.SportType, PracticeEvent.EventType, PracticeEvent.Id,
+                                             PracticeEvent.Dto.Date, PracticeEvent.LocationName, PracticeEvent.TeamName,
+                                             PracticeEvent.OpponentTeamName);
+            }
+
+            RaisePropertyChanged(() => IsEventPinned);
         }
 
         public BitmapImage CreateNewPracticeTileImage
@@ -328,6 +338,13 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             set { _showSelectionCheckBoxes = value; RaisePropertyChanged(() => ShowSelectionCheckBoxes); }
         }
 
+        public bool IsEventPinned
+        {
+            get
+            {
+                return _tileService.SecondaryEvenTileExists(PracticeEvent.SportType, PracticeEvent.Id);
+            }
+        }
         
     }
 }

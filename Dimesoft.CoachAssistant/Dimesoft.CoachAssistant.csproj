@@ -269,6 +269,9 @@
     <Content Include="Images\Tiles\BaseballSecondaryTile_173x173.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Tiles\BasketballSecondaryBackTile_173x173.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Tiles\BasketballSecondaryTile_173x173.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

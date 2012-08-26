@@ -25,7 +25,7 @@
     </phone:PhoneApplicationPage.Resources>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
  
         <!--Panorama control-->
         <controls:Panorama Title="Coach Assistant">
