@@ -34,8 +34,8 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding ApplicationName, FallbackValue='Coaches Assistant'}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding PageTitle, FallbackValue='Event Creation'}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding ApplicationName, FallbackValue='Coaches Assistant'}" Style="{StaticResource ApplicationTitleTextBlockStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding PageTitle, FallbackValue='Event Creation'}" Margin="9,-7,0,0" Style="{StaticResource PageTitleTextBlockStyle}"/>
             <StackPanel Orientation="Horizontal" x:Name="PageSubTitle">
                 <TextBlock Text="For" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
                 <TextBlock Text="{Binding SportName, FallbackValue='Baseball'}" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
