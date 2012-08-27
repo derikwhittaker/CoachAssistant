@@ -113,6 +113,10 @@
     <Compile Include="Services\SessonStateService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\TileService.cs" />
+    <Page Include="Styles\DarkThemeStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\Fields\CreationViewModel.cs" />
     <Compile Include="ViewModels\Fields\ListingViewModel.cs" />

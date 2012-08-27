@@ -28,7 +28,10 @@
     <Grid x:Name="LayoutRoot">
  
         <!--Panorama control-->
-        <controls:Panorama Title="Coach Assistant">
+        <controls:Panorama>
+            <controls:Panorama.Title>
+                <TextBlock Text="Coach Assistant" Style="{StaticResource PanaramaTitleTextBlockStyle}" />
+            </controls:Panorama.Title>
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="Images/SportsGeneralBackground_1024x768.jpg" Opacity=".40" />
             </controls:Panorama.Background>
@@ -38,7 +41,7 @@
             	<controls:PanoramaItem.Header>
             		<Grid>
             			<StackPanel Orientation="Vertical">
-            				<TextBlock Text="Events" />
+            				<TextBlock Text="Events" Style="{StaticResource PanaramaHeaderTextBlockStyle}" />
                             <TextBlock Text="{Binding EventsCount}" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" />
 						</StackPanel>
 					</Grid>
@@ -102,7 +105,12 @@
  
             <!--Panorama item two-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="Actions">
+            <controls:PanoramaItem>
+            	<controls:PanoramaItem.Header>
+            		<Grid>
+            			<TextBlock Text="Actions" Style="{StaticResource PanaramaHeaderTextBlockStyle}" />
+					</Grid>
+            	</controls:PanoramaItem.Header>            	
             	<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width=".66*"/>

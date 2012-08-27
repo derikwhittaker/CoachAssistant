@@ -37,7 +37,7 @@
             <controls:Panorama.Title>
                 <Grid>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Practice" x:Name="PageTitle" />
+                        <TextBlock Text="Practice" x:Name="PageTitle"  Style="{StaticResource PanaramaTitleTextBlockStyle}"/>
                         <StackPanel Orientation="Horizontal" x:Name="PageSubTitle">
                             <TextBlock Text="For" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
                             <TextBlock Text="{Binding PracticeEvent.TeamName}" Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" Margin="2,0"/>
@@ -54,7 +54,7 @@
                 <controls:PanoramaItem.Header>
                     <Grid>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Drills" />
+                            <TextBlock Text="Drills"  Style="{StaticResource PanaramaHeaderTextBlockStyle}"/>
                             <TextBlock Text="{Binding DrillCount}" 
                                        Visibility="{Binding IsBusy, Converter={StaticResource ib2v}}"
                                        Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" />
@@ -115,7 +115,12 @@
 
             <!--Panorama item two-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="Actions">
+            <controls:PanoramaItem >
+                <controls:PanoramaItem.Header>
+                    <Grid>
+                        <TextBlock Text="Actions"  Style="{StaticResource PanaramaHeaderTextBlockStyle}"/>
+                    </Grid>
+                </controls:PanoramaItem.Header>                
                 <!--Double line list with image placeholder and text wrapping-->
                 <Grid>
                     <Grid.RowDefinitions>

@@ -51,6 +51,19 @@
         </Setter>
     </Style>
 
+    <!-- Move to the theme file -->
+    <Color x:Key="ListItemheaderColor">White</Color>
+    <Color x:Key="ApplicationTitleColor">White</Color>
+    <Color x:Key="PageTitleColor">White</Color>
+    <Color x:Key="PanaramaTitleColor">White</Color>
+    <Color x:Key="PanaramaTitleHeaderColor">White</Color>
+
+    <SolidColorBrush x:Key="ListItemheaderBrush" Color="{StaticResource ListItemheaderColor}" />
+    <SolidColorBrush x:Key="ApplicationTitleBrush" Color="{StaticResource ApplicationTitleColor}" />
+    <SolidColorBrush x:Key="PageTitleBrush" Color="{StaticResource PageTitleColor}" />
+    <SolidColorBrush x:Key="PanaramaTitleBrush" Color="{StaticResource PanaramaTitleColor}" />
+    <SolidColorBrush x:Key="PanaramaTitleHeaderBrush" Color="{StaticResource PanaramaTitleHeaderColor}" />
+
     <Color x:Key="BlueColor">#093161</Color>
     <Color x:Key="MazeColor">#f5d130</Color>
 
@@ -60,15 +73,37 @@
     <Style x:Key="ListBoxHeaderStyle" BasedOn="{StaticResource PhoneTextBlockBase}" TargetType="TextBlock">
 		<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
 		<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}"/>
-		<Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource ListItemheaderBrush}"/>
 	</Style>
 	
 	<Style x:Key="ListBoxAccentTextBlockStyle" BasedOn="{StaticResource PhoneTextBlockBase}" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource MazeColorBrush}"/>
         <Setter Property="Opacity" Value=".75"/>
 	</Style>
-	
-	<Style x:Key="PanaramaHeaderAccentTextBlockStyle" BasedOn="{StaticResource PhoneTextBlockBase}" TargetType="TextBlock">
+
+    <Style x:Key="ApplicationTitleTextBlockStyle" BasedOn="{StaticResource PhoneTextNormalStyle}" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ApplicationTitleBrush}"/>
+    </Style>
+
+    <Style x:Key="PageTitleTextBlockStyle" BasedOn="{StaticResource PhoneTextTitle1Style}" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource PageTitleBrush}"/>
+    </Style>
+    
+    <Style x:Key="PanaramaTitleTextBlockStyle" BasedOn="{StaticResource PhoneTextBlockBase}" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource PanaramaTitleBrush}"/>
+        <Setter Property="FontSize" Value="187"/>
+        <Setter Property="FontWeight" Value="ExtraLight"/>
+        <Setter Property="Margin" Value="10,-6,0,9" />
+    </Style>
+
+    <Style x:Key="PanaramaHeaderTextBlockStyle" BasedOn="{StaticResource PhoneTextBlockBase}" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource PanaramaTitleHeaderBrush}"/>        
+        <Setter Property="FontSize" Value="72"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="Margin" Value="0,0" />
+    </Style>
+
+    <Style x:Key="PanaramaHeaderAccentTextBlockStyle" BasedOn="{StaticResource PhoneTextBlockBase}" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource MazeColorBrush}"/>
         <Setter Property="Opacity" Value=".75"/>
 		<Setter Property="FontSize" Value="24"/>

@@ -18,7 +18,10 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="Practice Drills" ItemsSource="{Binding SportDrills}" >
+        <controls:Panorama ItemsSource="{Binding SportDrills}" >
+            <controls:Panorama.Title>
+                <TextBlock Text="Practice Drills" Style="{StaticResource PanaramaTitleTextBlockStyle}" />
+            </controls:Panorama.Title>            
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="Images/SportsGeneralBackground_1024x768.jpg" Opacity=".40" />
             </controls:Panorama.Background>
@@ -29,7 +32,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding SportName}" />
+                        <TextBlock Text="{Binding SportName}"  Style="{StaticResource PanaramaHeaderTextBlockStyle}"/>
                         <TextBlock Grid.Row="1" Text="{Binding DrillCount}" 
                                    Margin="15,3"
                                    Style="{StaticResource PanaramaHeaderAccentTextBlockStyle}" />
