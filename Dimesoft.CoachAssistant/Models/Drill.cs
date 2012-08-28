@@ -39,6 +39,13 @@ namespace Dimesoft.CoachAssistant.Models
             set { _dto.Name = value; RaisePropertyChanged(() => Name); }
         }
 
+        public int ExpectedDuration
+        {
+
+            get { return _dto.ExpectedDurationInMinutes; }
+            set { _dto.ExpectedDurationInMinutes = value; RaisePropertyChanged(() => ExpectedDuration); }
+        }
+
         public override string ToString()
         {
             if ( _dto == null )

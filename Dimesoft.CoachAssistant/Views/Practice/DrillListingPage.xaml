@@ -64,7 +64,14 @@
 
                                 <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
 
-                            </Grid>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="10,-10,0,0">
+                                    <TextBlock Text="Expected Duration:" TextWrapping="Wrap" Margin="0,0,5,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding ExpectedDuration}" TextWrapping="Wrap" Margin="0,0,5,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
+                                    <TextBlock Text="Minutes" TextWrapping="Wrap" Margin="0,0,5,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
+                                </StackPanel>
+                                
+
+                        </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

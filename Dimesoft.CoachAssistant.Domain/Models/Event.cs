@@ -46,55 +46,6 @@ namespace Dimesoft.CoachAssistant.Domain.Models
 
     }
 
-    public class TeamDto : IBaseModel
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public int SportTypeId { get; set; }
-
-    }
-
-    public class LocationDto : IBaseModel
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-    }
-    
-    public class PracticeDrillDto : IBaseModel
-    {        
-        public int Sequence { get; set; }
-
-        public int Id { get; set; }
-
-        public int SportTypeId { get; set; }
-
-        [Wintellect.Sterling.Serialization.SterlingIgnore]
-        public SportType SportType
-        {
-            get { return (SportType)Enum.Parse(typeof(SportType), SportTypeId.ToString(), true); }
-        }
-
-        public string Name { get; set; }
-        
-        public string Notes { get; set; }
-    }
 
 
-    public enum SportType
-    {
-        Unknown = 0,
-        Soccer = 1,
-        Baseball = 2,
-        Basketball = 3
-    }
-
-    public enum EventType
-    {
-        Unknown = 0,
-        Practice = 1,
-        Game = 2
-    }
 }
