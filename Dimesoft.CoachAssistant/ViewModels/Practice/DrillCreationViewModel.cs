@@ -38,6 +38,21 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                              new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
                              new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
                          };
+
+            var defaultDuration = new DrillDuration {Minutes = 15, Name = "15 Minutes"};
+            Durations = new List<DrillDuration>
+                            {
+                                new DrillDuration{Minutes = 5, Name = "5 Minutes"},
+                                new DrillDuration{Minutes = 10, Name = "10 Minutes"},
+                                defaultDuration,
+                                new DrillDuration{Minutes = 20, Name = "20 Minutes"},
+                                new DrillDuration{Minutes = 25, Name = "25 Minutes"},
+                                new DrillDuration{Minutes = 30, Name = "30 Minutes"},
+                                new DrillDuration{Minutes = 45, Name = "45 Minutes"},
+                                new DrillDuration{Minutes = 60, Name = "60 Minutes"},
+                            };
+
+            SelectedDuration = defaultDuration;
         }
 
         public void LoadData(int sportId, string callingPageName)
@@ -80,7 +95,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                 {
                     SportTypeId = _currentSportId,
                     Name = DrillName,
-                    Notes = DrillNotes
+                    Notes = DrillNotes,
+                    ExpectedDurationInMinutes = SelectedDuration.Minutes
                 };
 
             _drillsRepository.Save(drill);
@@ -128,6 +144,37 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                 RaisePropertyChanged(() => Sports);
             }
         }
+
+        public DrillDuration SelectedDuration
+        {
+            get { return _selectedDuration; }
+            set
+            {
+                _selectedDuration = value;
+                RaisePropertyChanged(() => SelectedDuration);
+            }
+        }
+
+        private IList<DrillDuration> _durations;
+        private DrillDuration _selectedDuration;
+
+        public IList<DrillDuration> Durations
+        {
+            get { return _durations; }
+            set
+            {
+                _durations = value;
+                RaisePropertyChanged(() => Durations);
+            }
+        } 
+    }
+
+    public class DrillDuration
+    {
+        public int Minutes { get; set; }
+
+        public string Name { get; set; }
+        
     }
 
 }

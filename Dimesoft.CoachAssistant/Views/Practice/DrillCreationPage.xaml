@@ -9,7 +9,8 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views"
     xmlns:Behaviors="clr-namespace:Dimesoft.CoachAssistant.Behaviors"
-    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"    
     xmlns:Converters="clr-namespace:Dimesoft.CoachAssistant.Converters"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -51,8 +52,10 @@
                 <RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-			</Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Sport Type:" Visibility="{Binding ShowSportSelector, Converter={StaticResource b2v}}" />
 
@@ -70,8 +73,17 @@
                 </i:Interaction.Behaviors>
             </TextBox>
 
-                <TextBlock Grid.Row="4" Text="Drill Notes:" Margin="0,10,0,0" />
-            <TextBox Grid.Row="5" Text="{Binding DrillNotes, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" Height="200">
+            <TextBlock Grid.Row="4" Text="Expected Duration:" Margin="0,10,0,0" />
+
+            <telerikInput:RadListPicker Grid.Row="5" 
+                                        ItemsSource="{Binding Durations}" 
+                                        DisplayMemberPath="Name"                             
+                                        SelectedItem="{Binding SelectedDuration, Mode=TwoWay}"
+                                        />
+
+
+            <TextBlock Grid.Row="6" Text="Drill Notes:" Margin="0,10,0,0" />
+            <TextBox Grid.Row="7" Text="{Binding DrillNotes, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" Height="200">
                 <i:Interaction.Behaviors>
                     <Behaviors:UpdateOnChangeBehavior />
                 </i:Interaction.Behaviors>
