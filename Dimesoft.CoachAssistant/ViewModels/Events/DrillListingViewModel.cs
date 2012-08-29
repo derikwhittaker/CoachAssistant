@@ -11,7 +11,7 @@ using Dimesoft.CoachAssistant.Services;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 
-namespace Dimesoft.CoachAssistant.ViewModels.Practice
+namespace Dimesoft.CoachAssistant.ViewModels.Events
 {
     public class DrillListingViewModel : BaseVM
     {

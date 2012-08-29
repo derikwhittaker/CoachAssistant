@@ -11,7 +11,7 @@ using Dimesoft.CoachAssistant.Services;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 
-namespace Dimesoft.CoachAssistant.ViewModels.Practice
+namespace Dimesoft.CoachAssistant.ViewModels.Events
 {
     public class DrillListingPanoramaViewModel : BaseVM
     {
@@ -84,7 +84,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         private void CreateDrill()
         {
             //DrillCreationPage.xaml
-            var url = string.Format("/Views/Practice/DrillCreationPage.xaml?{0}={1}&{2}={3}",
+            var url = string.Format("/Views/Events/DrillCreationPage.xaml?{0}={1}&{2}={3}",
                 QueryStringConstants.SportId, 0,
                 QueryStringConstants.CallingPageName, RoutingPageConstants.PracticeEventLandingPage);
 

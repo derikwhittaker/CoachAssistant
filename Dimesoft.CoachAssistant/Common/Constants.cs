@@ -20,7 +20,7 @@
 
     public class RoutingPageConstants
     {
-        public const string PracticeEventLandingPage = "EventLandingPage.xaml";
+        public const string PracticeEventLandingPage = "PracticeEventLandingPage.xaml";
     }
 
     public enum DashboardViewState

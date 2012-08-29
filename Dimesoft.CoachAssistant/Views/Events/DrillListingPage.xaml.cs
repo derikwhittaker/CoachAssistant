@@ -3,9 +3,9 @@ using System.Linq;
 using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Services;
-using Dimesoft.CoachAssistant.ViewModels.Practice;
+using Dimesoft.CoachAssistant.ViewModels.Events;
 
-namespace Dimesoft.CoachAssistant.Views.Practice
+namespace Dimesoft.CoachAssistant.Views.Events
 {
     public partial class DrillListingPage : PageBase
     {

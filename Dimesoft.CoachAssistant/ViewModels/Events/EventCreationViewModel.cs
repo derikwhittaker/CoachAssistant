@@ -8,10 +8,9 @@ using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
-using EvenTypeEnum = Dimesoft.CoachAssistant.Domain.Models.EventType;
 using EventType = Dimesoft.CoachAssistant.Models.EventType;
 
-namespace Dimesoft.CoachAssistant.ViewModels.Practice
+namespace Dimesoft.CoachAssistant.ViewModels.Events
 {
     public class EventCreationViewModel : BaseVM
     {
@@ -54,8 +53,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 
                                                  var eventTypes = new List<EventType>
                                                                   {
-                                                                      new EventType { Id = (int) EvenTypeEnum.Practice, Name = EvenTypeEnum.Practice.ToString() },
-                                                                      new EventType { Id = (int) EvenTypeEnum.Game, Name = EvenTypeEnum.Game.ToString() }
+                                                                      new EventType { Id = (int) Domain.Models.EventType.Practice, Name = Domain.Models.EventType.Practice.ToString() },
+                                                                      new EventType { Id = (int) Domain.Models.EventType.Game, Name = Domain.Models.EventType.Game.ToString() }
                                                                   };
                                                  
                                                  var teams = _eventRepository.Teams().Select(x =>
@@ -132,7 +131,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
             {
                 _selectedEventType = value;
 
-                if (value.Id == (int)EvenTypeEnum.Game)
+                if (value.Id == (int)Domain.Models.EventType.Game)
                 {
                     ShowOpponents = true;
                 }
@@ -141,7 +140,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
                     ShowOpponents = false;
                 }
 
-                CurrentEvent.EventType = (EvenTypeEnum)value.Id;
+                CurrentEvent.EventType = (Domain.Models.EventType)value.Id;
 
                 RaisePropertyChanged(() => SelectedEventType);
             }

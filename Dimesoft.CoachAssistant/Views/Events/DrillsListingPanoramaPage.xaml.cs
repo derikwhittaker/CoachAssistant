@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Services;
-using Dimesoft.CoachAssistant.ViewModels.Practice;
+using Dimesoft.CoachAssistant.ViewModels.Events;
 using Microsoft.Phone.Controls;
 
-namespace Dimesoft.CoachAssistant.Views.Practice
+namespace Dimesoft.CoachAssistant.Views.Events
 {
     public partial class DrillsListingPanoramaPage : PhoneApplicationPage
     {

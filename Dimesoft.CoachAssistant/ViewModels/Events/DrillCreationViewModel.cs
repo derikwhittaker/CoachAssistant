@@ -7,7 +7,7 @@ using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
 using GalaSoft.MvvmLight.Command;
 
-namespace Dimesoft.CoachAssistant.ViewModels.Practice
+namespace Dimesoft.CoachAssistant.ViewModels.Events
 {
     public class DrillCreationViewModel : BaseVM
     {

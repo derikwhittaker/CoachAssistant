@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows.Navigation;
 using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Services;
-using Dimesoft.CoachAssistant.ViewModels.Practice;
+using Dimesoft.CoachAssistant.ViewModels.Events;
 using Microsoft.Phone.Shell;
 using Telerik.Windows.Controls;
 using NavigationService = Dimesoft.CoachAssistant.Services.NavigationService;
 
-namespace Dimesoft.CoachAssistant.Views.Practice
+namespace Dimesoft.CoachAssistant.Views.Events
 {
-    public partial class EventLandingPage : PageBase
+    public partial class PracticeEventLandingPage : PageBase
     {
         public int EventId { get; set; }
         public int SportTypeId { get; set; }
         public bool FromTile { get; set; }
 
         private ISessonStateService _sessonStateService = new SessonStateService();
-        public EventLandingPage() : base()
+        public PracticeEventLandingPage() : base()
         {
             InitializeComponent();
 
             this.SetValue(RadSlideContinuumAnimation.ApplicationHeaderElementProperty, this.PageTitle);
             this.SetValue(RadSlideContinuumAnimation.HeaderElementProperty, this.PageTitle);
             
-            var vm = new EventLandingViewModel(new EventRepository(), new DrillsRepository(),  new NavigationService(), new TileService());
+            var vm = new PracticeEventLandingViewModel(new EventRepository(), new DrillsRepository(),  new NavigationService(), new TileService());
 
             vm.PropertyChanged += (s, e) =>
                                       {
@@ -132,9 +130,9 @@ namespace Dimesoft.CoachAssistant.Views.Practice
             ViewModel.TogglePinStateForEventCommand.Execute(null);            
         }
 
-        public EventLandingViewModel ViewModel
+        public PracticeEventLandingViewModel ViewModel
         {
-            get { return DataContext as EventLandingViewModel; }
+            get { return DataContext as PracticeEventLandingViewModel; }
         }
 
         private void ApplicationBar_StateChanged(object sender, Microsoft.Phone.Shell.ApplicationBarStateChangedEventArgs e)

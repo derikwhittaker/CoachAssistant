@@ -91,7 +91,7 @@ namespace Dimesoft.CoachAssistant.ViewModels
 
         private void CreateEvent()
         {
-            var url = string.Format("/Views/Practice/EventCreationPage.xaml");
+            var url = string.Format("/Views/Events/EventCreationPage.xaml");
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -103,7 +103,7 @@ namespace Dimesoft.CoachAssistant.ViewModels
 
         private void DrillsListing()
         {
-            var url = string.Format("/Views/Practice/DrillsListingPanoramaPage.xaml");
+            var url = string.Format("/Views/Events/DrillsListingPanoramaPage.xaml");
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));            
         }
@@ -154,7 +154,7 @@ namespace Dimesoft.CoachAssistant.ViewModels
 
                 if (_selectedEvent != null && _selectedEvent.EventType == EventType.Practice)
                 {
-                    var url = string.Format("/Views/Practice/EventLandingPage.xaml?{0}={1}&{2}={3}", 
+                    var url = string.Format("/Views/Events/PracticeEventLandingPage.xaml?{0}={1}&{2}={3}", 
                         QueryStringConstants.EventId, SelectedEvent.Id, QueryStringConstants.SportTypeId, (int)SelectedEvent.SportType);
 
                     _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));

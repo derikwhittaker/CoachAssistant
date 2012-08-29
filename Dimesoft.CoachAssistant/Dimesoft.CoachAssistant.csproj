@@ -114,11 +114,11 @@
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\Fields\CreationViewModel.cs" />
     <Compile Include="ViewModels\Fields\ListingViewModel.cs" />
-    <Compile Include="ViewModels\Practice\DrillListingPanoramaViewModel.cs" />
-    <Compile Include="ViewModels\Practice\DrillCreationViewModel.cs" />
-    <Compile Include="ViewModels\Practice\DrillListingViewModel.cs" />
-    <Compile Include="ViewModels\Practice\EventCreationViewModel.cs" />
-    <Compile Include="ViewModels\Practice\EventLandingViewModel.cs" />
+    <Compile Include="ViewModels\Events\DrillListingPanoramaViewModel.cs" />
+    <Compile Include="ViewModels\Events\DrillCreationViewModel.cs" />
+    <Compile Include="ViewModels\Events\DrillListingViewModel.cs" />
+    <Compile Include="ViewModels\Events\EventCreationViewModel.cs" />
+    <Compile Include="ViewModels\Events\PracticeEventLandingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Teams\CreationViewModel.cs" />
     <Compile Include="ViewModels\Teams\ListingViewModel.cs" />
@@ -129,20 +129,20 @@
       <DependentUpon>ListingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PageBase.cs" />
-    <Compile Include="Views\Practice\DrillCreationPage.xaml.cs">
+    <Compile Include="Views\Events\DrillCreationPage.xaml.cs">
       <DependentUpon>DrillCreationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Practice\DrillListingPage.xaml.cs">
+    <Compile Include="Views\Events\DrillListingPage.xaml.cs">
       <DependentUpon>DrillListingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Practice\DrillsListingPanoramaPage.xaml.cs">
+    <Compile Include="Views\Events\DrillsListingPanoramaPage.xaml.cs">
       <DependentUpon>DrillsListingPanoramaPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Practice\EventCreationPage.xaml.cs">
+    <Compile Include="Views\Events\EventCreationPage.xaml.cs">
       <DependentUpon>EventCreationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Practice\EventLandingPage.xaml.cs">
-      <DependentUpon>EventLandingPage.xaml</DependentUpon>
+    <Compile Include="Views\Events\PracticeEventLandingPage.xaml.cs">
+      <DependentUpon>PracticeEventLandingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Teams\ListingPage.xaml.cs">
       <DependentUpon>ListingPage.xaml</DependentUpon>
@@ -185,23 +185,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Practice\DrillCreationPage.xaml">
+    <Page Include="Views\Events\DrillCreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Practice\DrillListingPage.xaml">
+    <Page Include="Views\Events\DrillListingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Practice\DrillsListingPanoramaPage.xaml">
+    <Page Include="Views\Events\DrillsListingPanoramaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Practice\EventCreationPage.xaml">
+    <Page Include="Views\Events\EventCreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Practice\EventLandingPage.xaml">
+    <Page Include="Views\Events\PracticeEventLandingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

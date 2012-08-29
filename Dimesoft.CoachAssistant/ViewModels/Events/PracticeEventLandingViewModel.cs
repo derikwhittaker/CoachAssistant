@@ -12,9 +12,9 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 using System.Linq;
 
-namespace Dimesoft.CoachAssistant.ViewModels.Practice
+namespace Dimesoft.CoachAssistant.ViewModels.Events
 {
-    public class EventLandingViewModel : BaseVM
+    public class PracticeEventLandingViewModel : BaseVM
     {
 
         private readonly IEventRepository _eventRepository;
@@ -23,9 +23,9 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         private readonly ITileService _tileService;
 
         // for sample data only
-        public EventLandingViewModel() { }
+        public PracticeEventLandingViewModel() { }
 
-        public EventLandingViewModel(IEventRepository eventRepository, IDrillsRepository drillsRepository, 
+        public PracticeEventLandingViewModel(IEventRepository eventRepository, IDrillsRepository drillsRepository, 
             INavigationService navigationService, ITileService tileService) : this()
         {
             _eventRepository = eventRepository;
@@ -181,7 +181,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
         {
             var currentDrills = PracticeEvent.PracticeDrills.Select(x => x.Id).ToArray();
 
-            var url = string.Format("/Views/Practice/DrillListingPage.xaml?{0}={1}&{2}={3}",
+            var url = string.Format("/Views/Events/DrillListingPage.xaml?{0}={1}&{2}={3}",
                 QueryStringConstants.SportId, (int)PracticeEvent.SportType, QueryStringConstants.SelectedDrills, string.Join("|", currentDrills));
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
@@ -195,7 +195,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Practice
 
         private void CreateNewDrill()
         {
-            var url = string.Format("/Views/Practice/DrillCreationPage.xaml?{0}={1}&{2}={3}", 
+            var url = string.Format("/Views/Events/DrillCreationPage.xaml?{0}={1}&{2}={3}", 
                 QueryStringConstants.SportId, (int)PracticeEvent.SportType,
                 QueryStringConstants.CallingPageName, RoutingPageConstants.PracticeEventLandingPage);
 
