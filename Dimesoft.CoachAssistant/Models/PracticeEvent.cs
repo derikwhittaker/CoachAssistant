@@ -56,6 +56,12 @@ namespace Dimesoft.CoachAssistant.Models
             set { _dto.Sequence = value; RaisePropertyChanged(() => Sequence); }
         }
 
+        public int ExpectedDuration
+        {
+            get { return _dto.ExpectedDurationInMinutes; }
+            set { _dto.ExpectedDurationInMinutes = value; RaisePropertyChanged(() => ExpectedDuration); }
+        }
+
         public bool Selected
         {
             get { return _selected; }
