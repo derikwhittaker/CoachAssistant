@@ -4,6 +4,7 @@ using System.Windows;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 
 namespace Dimesoft.CoachAssistant.ViewModels.Events
@@ -66,6 +67,49 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
                 _event = value;
 
                 RaisePropertyChanged(() => GameEvent);
+            }
+        }
+
+        private RelayCommand _toggleEventStateCommand;
+        public RelayCommand ToggleEventStateCommand
+        {
+            get { return _toggleEventStateCommand ?? (_toggleEventStateCommand = new RelayCommand(ToggleEventState)); }
+        }
+
+        private void ToggleEventState()
+        {
+            GameEvent.IsCompleted = !GameEvent.IsCompleted;
+
+            _eventRepository.Save(GameEvent.Dto);
+        }
+
+        private RelayCommand _pinEventCommand;
+        public RelayCommand TogglePinStateForEventCommand
+        {
+            get { return _pinEventCommand ?? (_pinEventCommand = new RelayCommand(TogglePinStateForEvent)); }
+        }
+
+        private void TogglePinStateForEvent()
+        {
+            if (_tileService.SecondaryEvenTileExists(GameEvent.SportType, GameEvent.Id))
+            {
+                _tileService.DeleteSecondaryTile(GameEvent.SportType, GameEvent.Id);
+            }
+            else
+            {
+                _tileService.CreateEventTile(GameEvent.SportType, GameEvent.EventType, GameEvent.Id,
+                                             GameEvent.Dto.Date, GameEvent.LocationName, GameEvent.TeamName,
+                                             GameEvent.OpponentTeamName);
+            }
+
+            RaisePropertyChanged(() => IsEventPinned);
+        }
+
+        public bool IsEventPinned
+        {
+            get
+            {
+                return _tileService.SecondaryEvenTileExists(GameEvent.SportType, GameEvent.Id);
             }
         }
     }

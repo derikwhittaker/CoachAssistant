@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -83,6 +83,13 @@
         </controls:Panorama>
     </Grid>
 
-    <!--Panorama-based applications should not show an ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized" StateChanged="ApplicationBar_StateChanged">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="TogglePracticeStateMenuItem" Text="Game Completed" Click="GameCompletedClicked" />
+                <shell:ApplicationBarMenuItem Text="Pin Event" Click="PinEventClicked" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </Views:PageBase>

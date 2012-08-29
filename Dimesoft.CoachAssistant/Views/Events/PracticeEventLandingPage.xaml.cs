@@ -127,7 +127,7 @@ namespace Dimesoft.CoachAssistant.Views.Events
 
         private void PinEventClicked(object sender, EventArgs e)
         {
-            ViewModel.TogglePinStateForEventCommand.Execute(null);            
+            ViewModel.TogglePinStateForEventCommand.Execute(null);
         }
 
         public PracticeEventLandingViewModel ViewModel

@@ -21,7 +21,7 @@ namespace Dimesoft.CoachAssistant.Services
         public void CreateEventTile( SportType sport, EventType eventType, int eventId, DateTime eventDateTime, string fieldName, string teamName, string opponentName = "" )
         {
             var tileParms = string.Format(EventSecondaryTileQuery, eventId, (int)sport);
-            var tileUri = string.Format("/Views/Events/PracticeEventLandingPage.xaml?{0}", tileParms);
+            var tileUri = string.Format("/Views/Events/{0}EventLandingPage.xaml?{1}",eventType.ToString(), tileParms);
             var tileImages = GetImages(sport);
             var frontTitle = GetTitle(eventType, teamName, opponentName);
             var backTitle = GetBackTitle(eventDateTime);
