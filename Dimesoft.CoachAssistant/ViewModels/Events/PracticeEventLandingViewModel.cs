@@ -48,7 +48,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
             Scheduler.NewThread.Schedule(() =>
                                              {
 
-                                                 var asDto = _eventRepository.PracticeEvent(eventId);
+                                                 var asDto = _eventRepository.Event(eventId);
 
                                                  var allDrills = _drillsRepository.ForSport(asDto.SportType);
                                                  var foundDrill = allDrills.FirstOrDefault(x => x.Id == newDrillId);
@@ -70,7 +70,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
                                              {
                                                  Debug.WriteLine(string.Format("Load data - {0}", System.Threading.Thread.CurrentThread.ManagedThreadId));
 
-                                                 var asDto = _eventRepository.PracticeEvent(eventId);
+                                                 var asDto = _eventRepository.Event(eventId);
                                                  
                                                  if (drills.Any())
                                                  {

@@ -100,6 +100,7 @@
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\Field.cs" />
+    <Compile Include="Models\GameEvent.cs" />
     <Compile Include="Models\PracticeEvent.cs" />
     <Compile Include="Models\Sport.cs" />
     <Compile Include="Models\Team.cs" />
@@ -112,6 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\Events\GameEventLandingViewModel.cs" />
     <Compile Include="ViewModels\Fields\CreationViewModel.cs" />
     <Compile Include="ViewModels\Fields\ListingViewModel.cs" />
     <Compile Include="ViewModels\Events\DrillListingPanoramaViewModel.cs" />
@@ -122,6 +124,9 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Teams\CreationViewModel.cs" />
     <Compile Include="ViewModels\Teams\ListingViewModel.cs" />
+    <Compile Include="Views\Events\GameEventLandingPage.xaml.cs">
+      <DependentUpon>GameEventLandingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Fields\CreationPage.xaml.cs">
       <DependentUpon>CreationPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +181,10 @@
     <Page Include="Styles\General.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Events\GameEventLandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Fields\CreationPage.xaml">
       <Generator>MSBuild:Compile</Generator>

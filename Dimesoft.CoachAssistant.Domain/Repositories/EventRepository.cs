@@ -18,7 +18,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         IList<EventDto> All();
         IList<EventDto> Open();
         IList<EventDto> Completed();
-        EventDto PracticeEvent(int eventId);
+        EventDto Event(int eventId);
     }
 
     public class EventRepository : IEventRepository
@@ -364,7 +364,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
             return events.ToList();
         }
 
-        public EventDto PracticeEvent(int eventId)
+        public EventDto Event(int eventId)
         {
             var found = All().FirstOrDefault(x => x.Id == eventId);
             

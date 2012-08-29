@@ -152,13 +152,23 @@ namespace Dimesoft.CoachAssistant.ViewModels
 
                 RaisePropertyChanged(() => SelectedEvent);
 
-                if (_selectedEvent != null && _selectedEvent.EventType == EventType.Practice)
+                if (_selectedEvent != null)
                 {
-                    var url = string.Format("/Views/Events/PracticeEventLandingPage.xaml?{0}={1}&{2}={3}", 
-                        QueryStringConstants.EventId, SelectedEvent.Id, QueryStringConstants.SportTypeId, (int)SelectedEvent.SportType);
+                    var url = "";
+                    if ( _selectedEvent.EventType == EventType.Practice )
+                    {
+                         url = string.Format("/Views/Events/PracticeEventLandingPage.xaml?{0}={1}&{2}={3}",
+                                QueryStringConstants.EventId, SelectedEvent.Id, QueryStringConstants.SportTypeId, (int)SelectedEvent.SportType);
+                    }
+                    else if (_selectedEvent.EventType == EventType.Game )
+                    {
+                        url = string.Format("/Views/Events/GameEventLandingPage.xaml?{0}={1}&{2}={3}",
+                            QueryStringConstants.EventId, SelectedEvent.Id, QueryStringConstants.SportTypeId, (int)SelectedEvent.SportType);                        
+                    }
 
                     _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
                 }
+
 
             }
         }
