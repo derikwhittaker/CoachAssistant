@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Phone.Reactive;
 
 namespace Dimesoft.CoachAssistant.ViewModels.Teams
 {
@@ -16,8 +20,10 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         private IList<Sport> _sports;
         private Sport _selectedSport;
         private RelayCommand _saveTeamCommand;
-        private bool _isSaveEnabled;
+        private bool _hasPlayers;
         private TeamDto _currentTeam = new TeamDto();
+        private RelayCommand _addPlayerCommand;
+        private IList<Player> _players;
 
         public CreationViewModel(INavigationService navigationService, IEventRepository eventRepository)
         {
@@ -37,12 +43,40 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
         public void LoadData( int teamId )
         {
-            _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
 
-            SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId );
+            Scheduler.NewThread.Schedule(() =>
+                                             {
+                                                 IsBusy = true;
 
-            RaisePropertyChanged(() => TeamName);
+                                                 _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
+
+                                                 HandleLoadedCallback(_currentTeam, teamId);
+                                             });
+            
+            SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId );          
+
             RaisePropertyChanged(() => SelectedSport);
+        }
+
+        private void HandleLoadedCallback(TeamDto currentTeam, int teamId)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
+                HasPlayers = _currentTeam.Players != null && _currentTeam.Players.Any();
+
+                if (_currentTeam.Players != null)
+                {
+                    Players = _currentTeam.Players.Select(x => new Player(x)).ToList();    
+                }
+                
+
+                RaisePropertyChanged(() => TeamName);
+                RaisePropertyChanged(() => SelectedSport); 
+
+                IsBusy = false;
+            });
+
         }
 
         public RelayCommand SaveTeamCommand
@@ -62,7 +96,19 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
             _navigationService.GoBack();
         }
-        
+
+        public RelayCommand AddPlayerCommand
+        {
+            get { return _addPlayerCommand ?? (_addPlayerCommand = new RelayCommand(AddPlayer)); }
+        }
+
+        private void AddPlayer()
+        {
+            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml");
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
+        }
+
         public string TeamName
         {
             get { return _currentTeam.Name; }
@@ -104,6 +150,27 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             { 
                 _sports = value; 
                 RaisePropertyChanged(() => Sports);
+            }
+        }
+
+        public IList<Player> Players
+        {
+            get { return _players; }
+            set
+            {
+                _players = value;
+
+                RaisePropertyChanged(() => Players);
+            }
+        }
+
+        public bool HasPlayers
+        {
+            get { return _hasPlayers; }
+            set
+            {
+                _hasPlayers = value;
+                RaisePropertyChanged(() => HasPlayers);
             }
         }
     }

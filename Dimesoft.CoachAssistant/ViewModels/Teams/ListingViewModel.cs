@@ -66,12 +66,13 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
                             Teams = new ObservableCollection<Team>(teams.OrderByDescending(x => x.MyTeam).ThenBy(y => y.Name));
-
+                            
                             IsBusy = false;
                         });
         }
 
-        private RelayCommand _createNewTeamCommand;
+        private RelayCommand _createNewTeamCommand;        
+
         public RelayCommand CreateNewTeamCommand
         {
             get { return _createNewTeamCommand ?? (_createNewTeamCommand = new RelayCommand(CreateNewTeam)); }
@@ -109,5 +110,6 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
+
     }
 }
