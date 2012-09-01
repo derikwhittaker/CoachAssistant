@@ -108,6 +108,7 @@
     <Compile Include="Services\SessonStateService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\TileService.cs" />
+    <Compile Include="ViewModels\Teams\PlayerCreationViewModel.cs" />
     <Compile Include="Views\Teams\PlayerCreationPage.xaml.cs">
       <DependentUpon>PlayerCreationPage.xaml</DependentUpon>
     </Compile>

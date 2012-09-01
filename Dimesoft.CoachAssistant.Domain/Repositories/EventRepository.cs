@@ -19,6 +19,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         IList<EventDto> Open();
         IList<EventDto> Completed();
         EventDto Event(int eventId);
+        IList<PlayerDto> Players();
     }
 
     public class EventRepository : IEventRepository
@@ -374,6 +375,15 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
             var found = All().FirstOrDefault(x => x.Id == eventId);
             
             return found;
+        }
+
+        public IList<PlayerDto> Players()
+        {
+            var results = from player in DB.Database.Query<PlayerDto, int>()
+                          select player.LazyValue.Value;
+
+
+            return results.ToList();
         }
     }
 }

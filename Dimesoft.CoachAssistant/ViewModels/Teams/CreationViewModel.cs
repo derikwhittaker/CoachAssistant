@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using Dimesoft.CoachAssistant.Common;
 using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
@@ -104,7 +105,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
         private void AddPlayer()
         {
-            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml");
+            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml?{0}=0", QueryStringConstants.PlayerId);
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
