@@ -15,7 +15,6 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         private readonly IEventRepository _eventRepository;
         private IList<Sport> _sports;
         private Sport _selectedSport;
-        private string _teamName;
         private RelayCommand _saveTeamCommand;
         private bool _isSaveEnabled;
         private TeamDto _currentTeam = new TeamDto();
@@ -83,6 +82,17 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                 _selectedSport = value;
                 _currentTeam.SportTypeId = value.Id;
                 RaisePropertyChanged(() => SelectedSport);
+                SaveTeamCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public bool MyTeam
+        {
+            get { return _currentTeam.MyTeam; }
+            set
+            {
+                _currentTeam.MyTeam = value;
+                RaisePropertyChanged(() => MyTeam);
                 SaveTeamCommand.RaiseCanExecuteChanged();
             }
         }

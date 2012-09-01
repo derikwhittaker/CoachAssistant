@@ -49,7 +49,11 @@
                             
                             <TextBlock Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource ListBoxHeaderStyle}"/>
 
-                            <TextBlock Grid.Row="1" Text="{Binding SportName}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" >
+                                <TextBlock Text="{Binding SportName}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
+                                <TextBlock Text="{Binding MyTeamDescription}" TextWrapping="Wrap" Margin="5,0,0,0" Style="{StaticResource ListBoxAccentTextBlockStyle}"/>
+                            </StackPanel>
+                            
 
                         </Grid>
                     </DataTemplate>

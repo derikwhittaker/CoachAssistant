@@ -40,6 +40,8 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Team Name:" />
@@ -60,6 +62,9 @@
                     <DataTemplate></DataTemplate>
                 </telerikInput:RadListPicker.ItemTemplate>-->
             </telerikInput:RadListPicker>
+
+            <TextBlock Grid.Row="4" Text="My Team:" />
+            <CheckBox Grid.Row="5" IsChecked="{Binding MyTeam, Mode=TwoWay}"  />
         </Grid>
     </Grid>
  

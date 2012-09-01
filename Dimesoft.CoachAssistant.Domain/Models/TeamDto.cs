@@ -8,5 +8,7 @@ namespace Dimesoft.CoachAssistant.Domain.Models
 
         public int SportTypeId { get; set; }
 
+        public bool MyTeam { get; set; }
+
     }
 }

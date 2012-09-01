@@ -65,8 +65,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
             Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            Teams = new ObservableCollection<Team>(teams);
-
+                            Teams = new ObservableCollection<Team>(teams.OrderByDescending(x => x.MyTeam).ThenBy(y => y.Name));
 
                             IsBusy = false;
                         });

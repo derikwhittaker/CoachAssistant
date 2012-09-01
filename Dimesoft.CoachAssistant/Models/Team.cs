@@ -33,9 +33,23 @@ namespace Dimesoft.CoachAssistant.Models
             set { Dto.Name = value; RaisePropertyChanged(() => Name); }
         }
 
+        public bool MyTeam
+        {
+            get { return Dto.MyTeam; }
+            set { Dto.MyTeam = value; RaisePropertyChanged(() => MyTeam); }
+        }
+
         public string SportName
         {
             get { return _sport.Name; }
+        }
+
+        public string MyTeamDescription
+        {
+            get 
+            {
+                return Dto.MyTeam ? "[My Team]" : string.Empty;
+            }
         }
     }
 }
