@@ -25,6 +25,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         private TeamDto _currentTeam = new TeamDto();
         private RelayCommand _addPlayerCommand;
         private IList<Player> _players;
+        private Player _selectedPlayer;
 
         public CreationViewModel(INavigationService navigationService, IEventRepository eventRepository)
         {
@@ -96,7 +97,15 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
         private void AddPlayer()
         {
-            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml?{0}=0&{1}={2}", QueryStringConstants.PlayerId, QueryStringConstants.TeamId, _currentTeam.Id);
+            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml?{0}={1}&{2}={3}", QueryStringConstants.PlayerId, 0, QueryStringConstants.TeamId, _currentTeam.Id);
+
+            _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
+        }
+
+
+        private void EditSelectedPlayer(Player value)
+        {
+            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml?{0}={1}&{2}={3}", QueryStringConstants.PlayerId, value.Dto.Id, QueryStringConstants.TeamId, _currentTeam.Id);
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -153,6 +162,22 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                 _players = value;
 
                 RaisePropertyChanged(() => Players);
+            }
+        }
+
+        public Player SelectedPlayer
+        {
+            get { return _selectedPlayer; }
+            set
+            {
+                _selectedPlayer = value;
+
+                RaisePropertyChanged( () => SelectedPlayer);
+
+                if ( value != null )
+                {
+                    EditSelectedPlayer(value);   
+                }
             }
         }
 

@@ -71,9 +71,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         {
             _eventRepository.Save(_currentPlayer);
 
-            if ( _currentTeam.Players.All(x => x.Id != _currentPlayer.Id) )
+            var foundPlayer = _currentTeam.Players.FirstOrDefault(x => x.Id == _currentPlayer.Id);
+
+            if (foundPlayer == null)
             {
-                _currentTeam.Players.Add(_currentPlayer);    
+                _currentTeam.Players.Add(_currentPlayer);
+            }
+            else
+            {
+                _currentTeam.Players.Remove(foundPlayer);
+                _currentTeam.Players.Add(_currentPlayer);
             }
 
             _eventRepository.Save(_currentTeam);

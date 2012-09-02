@@ -101,6 +101,7 @@
 
                     <ListBox Grid.Row="0" Margin="0,0,-12,0" 
                                     ItemsSource="{Binding Players}" 
+                             SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"
                                     Visibility="{Binding HasPlayers, Converter={StaticResource b2v}}"
 									telerik:InteractionEffectManager.IsInteractionEnabled="True" 
 									ItemContainerStyle="{StaticResource StretchableListBoxItemStyle}"
