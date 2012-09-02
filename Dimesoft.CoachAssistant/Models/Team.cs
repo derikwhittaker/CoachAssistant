@@ -8,11 +8,11 @@ namespace Dimesoft.CoachAssistant.Models
     public class Team : ViewModelBase
     {
         public readonly TeamDto Dto;
-        private readonly Sport _sport;
+        private readonly SportDto _sport;
         private bool _selected;
         private IList<Player> _players;
 
-        public Team(TeamDto dto, Sport sport)
+        public Team(TeamDto dto, SportDto sport)
         {
             Dto = dto;
             _sport = sport;

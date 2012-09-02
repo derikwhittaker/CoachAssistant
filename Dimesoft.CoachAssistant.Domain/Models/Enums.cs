@@ -2,10 +2,10 @@
 {
     public enum SportType
     {
-        Unknown = 0,
-        Soccer = 1,
-        Baseball = 2,
-        Basketball = 3
+        Unknown = 1,
+        Soccer = 2,
+        Baseball = 3,
+        Basketball = 4
     }
 
     public enum EventType

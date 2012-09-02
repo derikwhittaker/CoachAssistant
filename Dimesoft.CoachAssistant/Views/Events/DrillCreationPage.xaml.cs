@@ -14,7 +14,7 @@ namespace Dimesoft.CoachAssistant.Views.Events
         {
             InitializeComponent();
 
-            var vm = new DrillCreationViewModel(new DrillsRepository(), new SessonStateService(), new NavigationService());
+            var vm = new DrillCreationViewModel(new DrillsRepository(), new EventRepository(), new SessonStateService(), new NavigationService());
 
             vm.PropertyChanged += (s, e) =>
                                       {

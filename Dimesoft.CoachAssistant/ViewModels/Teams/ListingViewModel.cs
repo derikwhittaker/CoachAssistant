@@ -35,13 +35,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             if (DataLoaded) { return; }
             IsBusy = true;
 
-            var sports = new List<Sport>
-                         {
-                             new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
-                             new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
-                             new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
-                             new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
-                         };
+            var sports = _eventRepository.Sports();
 
             Scheduler.NewThread.Schedule(() =>
             {

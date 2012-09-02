@@ -29,6 +29,8 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
             _database.RegisterTrigger(new IdentityTrigger<TeamDto>(_database));
             _database.RegisterTrigger(new IdentityTrigger<LocationDto>(_database));
             _database.RegisterTrigger(new IdentityTrigger<PlayerDto>(_database));
+            _database.RegisterTrigger(new IdentityTrigger<SportDto>(_database));
+            
         }
 
         public void DeactivateEngine()
@@ -72,6 +74,9 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                            CreateTableDefinition<LocationDto, int>(testModel => testModel.Id),
 
                            CreateTableDefinition<PlayerDto, int>(testModel => testModel.Id),
+
+                           CreateTableDefinition<SportDto, int>(testModel => testModel.Id),
+                           
                        };
         }
     }

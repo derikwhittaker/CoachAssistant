@@ -12,12 +12,18 @@
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:Converters="clr-namespace:Dimesoft.CoachAssistant.Converters"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:Views="clr-namespace:Dimesoft.CoachAssistant.Views" FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
+
+
+    <telerikPrimitives:RadTransitionControl.Transition>
+        <telerikPrimitives:RadContinuumTransition/>
+    </telerikPrimitives:RadTransitionControl.Transition>
     
     <phone:PhoneApplicationPage.Resources>
         <Converters:BooleanToVisibilityConverter x:Key="b2v" />
@@ -31,7 +37,7 @@
                 <TextBlock Text="Team Maintenance" Style="{StaticResource PanaramaTitleTextBlockStyle}" />
             </controls:Panorama.Title>
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="Images/SportsGeneralBackground_1024x768.jpg" Opacity=".40" />
+                <ImageBrush ImageSource="..\..\Images\SportsGeneralBackground_1024x768.jpg" Stretch="None" Opacity=".40" />
             </controls:Panorama.Background>
 
             <controls:PanoramaItem x:Name="TeamInfoPanel" >

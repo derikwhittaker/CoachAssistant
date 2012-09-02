@@ -124,12 +124,20 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             }
         }
 
-        public DateTime DateOfBirth
+        public DateTime? DateOfBirth
         {
-            get { return _currentPlayer.DateOfBirth; }
+            get
+            {
+                if ( _currentPlayer.DateOfBirth == DateTime.MinValue)
+                {
+                    return null;
+                }
+
+                return _currentPlayer.DateOfBirth;
+            }
             set
             {
-                _currentPlayer.DateOfBirth = value;
+                _currentPlayer.DateOfBirth = value.Value;
 
                 RaisePropertyChanged(() => DateOfBirth);
             }

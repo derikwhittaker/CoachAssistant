@@ -10,9 +10,10 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         void Save(EventDto eventDto);
         void Save(TeamDto teamDto);
         void Save(LocationDto locationDto);
+        void Save(PlayerDto currentPlayer);
 
         IList<TeamDto> Teams();
-
+        IList<SportDto> Sports();
         IList<LocationDto> Locations();
 
         IList<EventDto> All();
@@ -20,7 +21,9 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         IList<EventDto> Completed();
         EventDto Event(int eventId);
         IList<PlayerDto> Players();
-        void Save(PlayerDto currentPlayer);
+        
+
+
     }
 
     public class EventRepository : IEventRepository
@@ -32,6 +35,29 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
 
             if (!results.Any())
             {
+
+                DB.Database.Save<SportDto>(new SportDto()
+                                               {
+                                                   Id = (int) SportType.Unknown,
+                                                   Name = "No Selection Made"
+                                               });
+
+                DB.Database.Save<SportDto>(new SportDto()
+                                               {
+                                                   Id = (int)SportType.Soccer,
+                                                   Name = SportType.Soccer.ToString()
+                                               } );
+
+                DB.Database.Save<SportDto>(new SportDto()
+                                               {
+                                                   Id = (int) SportType.Baseball,
+                                                   Name = SportType.Baseball.ToString()
+                                               });
+                DB.Database.Save<SportDto>(new SportDto()
+                                               {
+                                                   Id = (int) SportType.Basketball,
+                                                   Name = SportType.Basketball.ToString()
+                                               });
 
                 DB.Database.Save<EventDto>(new EventDto
                                                {
@@ -358,7 +384,16 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
 
 
             return results.ToList();
-        } 
+        }
+
+        public IList<SportDto> Sports()
+        {
+            var results = from team in DB.Database.Query<SportDto, int>()
+                          select team.LazyValue.Value;
+
+
+            return results.ToList();
+        }
 
         public IList<EventDto> Open()
         {

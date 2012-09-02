@@ -18,8 +18,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
     {
         private readonly INavigationService _navigationService;
         private readonly IEventRepository _eventRepository;
-        private IList<Sport> _sports;
-        private Sport _selectedSport;
+        private IList<SportDto> _sports;
+        private SportDto _selectedSport;
         private RelayCommand _saveTeamCommand;
         private bool _hasPlayers;
         private TeamDto _currentTeam = new TeamDto();
@@ -33,13 +33,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
             PageTitle = "Team Maintenance";
 
-            Sports = new List<Sport>
-                         {
-                             new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
-                             new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
-                             new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
-                             new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
-                         };
+            Sports = _eventRepository.Sports();
         }
 
         public void LoadData( int teamId )
@@ -50,6 +44,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                                                  IsBusy = true;
 
                                                  _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
+                                                 SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId);
 
                                                  HandleLoadedCallback(_currentTeam, teamId);
                                              });           
@@ -59,15 +54,12 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         {
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
-                HasPlayers = _currentTeam.Players != null && _currentTeam.Players.Any();
+                HasPlayers = currentTeam.Players != null && currentTeam.Players.Any();
 
-                if (_currentTeam.Players != null)
+                if (currentTeam.Players != null)
                 {
-                    Players = _currentTeam.Players.Select(x => new Player(x)).ToList();    
+                    Players = currentTeam.Players.Select(x => new Player(x)).ToList();    
                 }
-
-                SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId);
 
                 RaisePropertyChanged(() => SelectedSport);
 
@@ -120,7 +112,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             }
         }
 
-        public Sport SelectedSport
+        public SportDto SelectedSport
         {
             get { return _selectedSport; }
             set
@@ -143,7 +135,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             }
         }
 
-        public IList<Sport> Sports
+        public IList<SportDto> Sports
         {
             get { return _sports; }
             set 

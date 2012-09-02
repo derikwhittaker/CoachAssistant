@@ -13,9 +13,10 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
     {
         private int _currentSportId = 0;
         private string _callingPageName;
-        private IList<Sport> _sports;
-        private Sport _selectedSport;
+        private IList<SportDto> _sports;
+        private SportDto _selectedSport;
         private readonly IDrillsRepository _drillsRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly ISessonStateService _sessonStateService;
         private readonly INavigationService _navigationService;
         private string _sportName;
@@ -23,21 +24,16 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
         private string _drillNotes;
         private RelayCommand _saveNewDrillCommand;
 
-        public DrillCreationViewModel(IDrillsRepository drillsRepository, ISessonStateService sessonStateService, INavigationService navigationService)
+        public DrillCreationViewModel(IDrillsRepository drillsRepository, IEventRepository eventRepository, ISessonStateService sessonStateService, INavigationService navigationService)
         {
             _drillsRepository = drillsRepository;
+            _eventRepository = eventRepository;
             _sessonStateService = sessonStateService;
             _navigationService = navigationService;
 
             PageTitle = "New Practice Drill";
 
-            Sports = new List<Sport>
-                         {
-                             new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
-                             new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
-                             new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
-                             new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
-                         };
+            Sports = _eventRepository.Sports();
 
             var defaultDuration = new DrillDuration {Minutes = 15, Name = "15 Minutes"};
             Durations = new List<DrillDuration>
@@ -121,7 +117,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
             RaisePropertyChanged(() => CurrentSportId);}
         }
 
-        public Sport SelectedSport
+        public SportDto SelectedSport
         {
             get { return _selectedSport; }
             set
@@ -135,7 +131,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
             }
         }
 
-        public IList<Sport> Sports
+        public IList<SportDto> Sports
         {
             get { return _sports; }
             set

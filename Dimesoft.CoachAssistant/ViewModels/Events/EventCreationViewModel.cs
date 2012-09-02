@@ -28,7 +28,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
         private Field _selectedField;
         private Models.Event _currentEvent = new Models.Event(new EventDto());
         private RelayCommand _saveEventCommand;
-        private IList<Sport> _sports = new List<Sport>();
+        private IList<SportDto> _sports = new List<SportDto>();
 
         public EventCreationViewModel( IEventRepository eventRepository )
         {
@@ -43,13 +43,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Events
             Scheduler.NewThread.Schedule(() =>
                                              {
 
-                                                 _sports = new List<Sport>
-                                                                     {
-                                                                         new Sport {Id = (int) SportType.Unknown, Name = "No Selection Made"},
-                                                                         new Sport {Id = (int) SportType.Soccer, Name = "Soccer"},
-                                                                         new Sport {Id = (int) SportType.Baseball, Name = "Baseball"},
-                                                                         new Sport {Id = (int) SportType.Basketball, Name = "Basketball"}
-                                                                     };
+                                                 _sports = _eventRepository.Sports();
 
                                                  var eventTypes = new List<EventType>
                                                                   {

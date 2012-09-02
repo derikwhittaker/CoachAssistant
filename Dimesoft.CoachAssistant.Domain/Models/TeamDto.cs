@@ -30,4 +30,11 @@ namespace Dimesoft.CoachAssistant.Domain.Models
 
         public int JerseyNumber { get; set; }
     }
+
+    public class SportDto : IBaseModel
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
 }
