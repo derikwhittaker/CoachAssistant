@@ -6,6 +6,7 @@ using Dimesoft.CoachAssistant.Domain.Models;
 using Dimesoft.CoachAssistant.Domain.Repositories;
 using Dimesoft.CoachAssistant.Models;
 using Dimesoft.CoachAssistant.Services;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Reactive;
 
 namespace Dimesoft.CoachAssistant.ViewModels.Teams
@@ -15,6 +16,8 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
         private readonly INavigationService _navigationService;
         private readonly IEventRepository _eventRepository;
         private PlayerDto _currentPlayer = new PlayerDto();
+        private TeamDto _currentTeam = new TeamDto();
+        private RelayCommand _savePlayerCommand;
 
         public PlayerCreationViewModel(INavigationService navigationService, IEventRepository eventRepository)
         {
@@ -24,12 +27,13 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
             PageTitle = "Player Maintenance";
         }
 
-        public void LoadData(int playerId)
+        public void LoadData(int teamId, int playerId)
         {
             IsBusy = true;
 
             Scheduler.NewThread.Schedule(() =>
             {
+                _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
                 _currentPlayer = _eventRepository.Players().FirstOrDefault(x => x.Id == playerId) ?? new PlayerDto();
 
                 HandleLoadedCallback();
@@ -49,6 +53,32 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
                                                               IsBusy = false;
                                                           });
+        }
+
+        public RelayCommand SavePlayerCommand
+        {
+            get { return _savePlayerCommand ?? (_savePlayerCommand = new RelayCommand(SavePlayer, CanSavePlayer)); }
+        }
+
+        private bool CanSavePlayer()
+        {
+            return !string.IsNullOrWhiteSpace(FirstName) &&
+                   !string.IsNullOrWhiteSpace(LastName);
+
+        }
+
+        private void SavePlayer()
+        {
+            _eventRepository.Save(_currentPlayer);
+
+            if ( _currentTeam.Players.All(x => x.Id != _currentPlayer.Id) )
+            {
+                _currentTeam.Players.Add(_currentPlayer);    
+            }
+
+            _eventRepository.Save(_currentTeam);
+
+            _navigationService.GoBack();
         }
 
         public string FirstName

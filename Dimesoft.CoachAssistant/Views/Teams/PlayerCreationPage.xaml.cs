@@ -9,6 +9,7 @@ namespace Dimesoft.CoachAssistant.Views.Teams
     public partial class PlayerCreationPage : PageBase
     {
         private int PlayerId;
+        private int TeamId;
         public PlayerCreationPage()
         {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace Dimesoft.CoachAssistant.Views.Teams
 
         protected override void OnLoaded(object sender, System.Windows.RoutedEventArgs args)
         {
-            ViewModel.LoadData(PlayerId);
+            ViewModel.LoadData(TeamId, PlayerId);
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -28,7 +29,7 @@ namespace Dimesoft.CoachAssistant.Views.Teams
             base.OnNavigatedTo(e);
 
             PlayerId = int.Parse(NavigationContext.QueryString[QueryStringConstants.PlayerId]);
-
+            TeamId = int.Parse(NavigationContext.QueryString[QueryStringConstants.TeamId]);
         }
 
         public PlayerCreationViewModel ViewModel
@@ -38,7 +39,10 @@ namespace Dimesoft.CoachAssistant.Views.Teams
 
         private void SaveEventClicked(object sender, EventArgs e)
         {
-            
+            if (ViewModel.SavePlayerCommand.CanExecute(null))
+            {
+                ViewModel.SavePlayerCommand.Execute(null);
+            }
         }
     }
 }

@@ -52,11 +52,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                                                  _currentTeam = _eventRepository.Teams().FirstOrDefault(x => x.Id == teamId) ?? new TeamDto();
 
                                                  HandleLoadedCallback(_currentTeam, teamId);
-                                             });
-            
-            SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId );          
-
-            RaisePropertyChanged(() => SelectedSport);
+                                             });           
         }
 
         private void HandleLoadedCallback(TeamDto currentTeam, int teamId)
@@ -70,7 +66,10 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
                 {
                     Players = _currentTeam.Players.Select(x => new Player(x)).ToList();    
                 }
-                
+
+                SelectedSport = Sports.FirstOrDefault(x => x.Id == _currentTeam.SportTypeId);
+
+                RaisePropertyChanged(() => SelectedSport);
 
                 RaisePropertyChanged(() => TeamName);
                 RaisePropertyChanged(() => SelectedSport); 
@@ -105,7 +104,7 @@ namespace Dimesoft.CoachAssistant.ViewModels.Teams
 
         private void AddPlayer()
         {
-            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml?{0}=0", QueryStringConstants.PlayerId);
+            var url = string.Format("/Views/Teams/PlayerCreationPage.xaml?{0}=0&{1}={2}", QueryStringConstants.PlayerId, QueryStringConstants.TeamId, _currentTeam.Id);
 
             _navigationService.NavigateTo(new Uri(url, UriKind.RelativeOrAbsolute));
         }

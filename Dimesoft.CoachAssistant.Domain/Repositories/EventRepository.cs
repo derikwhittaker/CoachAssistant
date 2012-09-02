@@ -20,6 +20,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         IList<EventDto> Completed();
         EventDto Event(int eventId);
         IList<PlayerDto> Players();
+        void Save(PlayerDto currentPlayer);
     }
 
     public class EventRepository : IEventRepository
@@ -274,10 +275,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                 //                                                        }
                 //                               });
 
-                DB.Database.Save<TeamDto>(new TeamDto { Id = 1, Name = "Sparks", SportTypeId = (int)SportType.Soccer, MyTeam = true, Players = new List<PlayerDto>
-                                                                                                                                                   {
-                                                                                                                                                       new PlayerDto{Id = 1}
-                                                                                                                                                   }});
+                DB.Database.Save<TeamDto>(new TeamDto { Id = 1, Name = "Sparks", SportTypeId = (int)SportType.Soccer, MyTeam = true, Players = new List<PlayerDto>()});
                 DB.Database.Save<TeamDto>(new TeamDto { Id = 2, Name = "Clash", SportTypeId = (int)SportType.Soccer });
 
                 DB.Database.Save<TeamDto>(new TeamDto { Id = 3, Name = "Express", SportTypeId = (int)SportType.Soccer });
@@ -294,9 +292,7 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
                 DB.Database.Save<LocationDto>(new LocationDto { Id = 2, Name = "G. H. Field 1b" });
                 DB.Database.Save<LocationDto>(new LocationDto { Id = 3, Name = "G. H. Field 2a" });
                 DB.Database.Save<LocationDto>(new LocationDto { Id = 4, Name = "G. H. Field 2b" });
-
-                DB.Database.Save<PlayerDto>(new PlayerDto { Id = 1, FirstName = "Brendan", LastName = "Whittaker", JerseyNumber = 1, Nickname = "B-Man" });
-
+                
                 DB.Database.Flush();
             }
         }
@@ -325,6 +321,14 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
         public void Save(LocationDto locationDto)
         {
             DB.Database.Save<LocationDto>(locationDto);
+
+            DB.Database.Flush();
+        }
+
+
+        public void Save(PlayerDto currentPlayer)
+        {
+            DB.Database.Save<PlayerDto>(currentPlayer);
 
             DB.Database.Flush();
         }
@@ -385,5 +389,6 @@ namespace Dimesoft.CoachAssistant.Domain.Repositories
 
             return results.ToList();
         }
+
     }
 }

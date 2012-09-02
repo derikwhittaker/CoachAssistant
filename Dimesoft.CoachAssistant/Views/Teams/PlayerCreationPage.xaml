@@ -39,55 +39,58 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,15,12,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="First Name:" />
+                    <TextBlock Grid.Row="0" Text="First Name:" />
 
-            <TextBox Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
-                <i:Interaction.Behaviors>
-                    <Behaviors:UpdateOnChangeBehavior />
-                </i:Interaction.Behaviors>
-            </TextBox>
+                    <TextBox Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
+                        <i:Interaction.Behaviors>
+                            <Behaviors:UpdateOnChangeBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
 
-            <TextBlock Grid.Row="2" Text="Last Name:" />
-            <TextBox Grid.Row="3" Text="{Binding LastName, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
-                <i:Interaction.Behaviors>
-                    <Behaviors:UpdateOnChangeBehavior />
-                </i:Interaction.Behaviors>
-            </TextBox>
+                    <TextBlock Grid.Row="2" Text="Last Name:" />
+                    <TextBox Grid.Row="3" Text="{Binding LastName, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
+                        <i:Interaction.Behaviors>
+                            <Behaviors:UpdateOnChangeBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
 
-            <TextBlock Grid.Row="4" Text="Nick Name:" />
-            <TextBox Grid.Row="5" Text="{Binding Nickname, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
-                <i:Interaction.Behaviors>
-                    <Behaviors:UpdateOnChangeBehavior />
-                </i:Interaction.Behaviors>
-            </TextBox>
+                    <TextBlock Grid.Row="4" Text="Nick Name:" />
+                    <TextBox Grid.Row="5" Text="{Binding Nickname, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
+                        <i:Interaction.Behaviors>
+                            <Behaviors:UpdateOnChangeBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
 
-            <TextBlock Grid.Row="6" Text="Jersey Number:" />
-            <TextBox Grid.Row="7" Text="{Binding JerseyNumber, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
-                <i:Interaction.Behaviors>
-                    <Behaviors:UpdateOnChangeBehavior />
-                </i:Interaction.Behaviors>
-            </TextBox>
+                    <TextBlock Grid.Row="6" Text="Jersey Number:" />
+                    <TextBox Grid.Row="7" Text="{Binding JerseyNumber, Mode=TwoWay}" Margin="0" HorizontalAlignment="Stretch" >
+                        <i:Interaction.Behaviors>
+                            <Behaviors:UpdateOnChangeBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
 
-            <TextBlock Grid.Row="8" Text="Date of Birth:" />
-            <telerikInput:RadDatePicker Grid.Row="9" 
+                    <TextBlock Grid.Row="8" Text="Date of Birth:" />
+                    <telerikInput:RadDatePicker Grid.Row="9" 
                                         SelectorFormat="m/d/y" Value="{Binding DateOfBirth, Mode=TwoWay}"  
                                         OkButtonIconUri="/Images/AppBarIcons/appbar.check.rest.png" 
                                         CancelButtonIconUri="/Images/AppBarIcons/appbar.cancel.rest.png"/>
-
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Grid>
  
